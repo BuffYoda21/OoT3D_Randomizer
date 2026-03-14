@@ -7,6 +7,7 @@ using string_view = std::string_view;
 extern string_view menuOpenSettingsDesc;
 extern string_view menuGlitchOptionsDesc;
 extern string_view menuPersonalizationDesc;
+extern string_view archipelagoMultiworldDesc;
 extern string_view menuIngameDefaultsDesc;
 
 extern string_view presetNintendedDesc;

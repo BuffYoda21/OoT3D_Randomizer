@@ -10,6 +10,9 @@ string_view menuOpenSettingsDesc      = "Depending on the enabled glitches and i
 string_view menuGlitchOptionsDesc     = "These are only taken into account when logic is\n"
                                         "set to Glitched.";                                //
 string_view menuPersonalizationDesc   = "These options do not affect seed generation.";    //
+string_view archipelagoMultiworldDesc = "Connect to an Archipelago server to participate\n"//
+                                        "in a multiworld. Randomization settings will be\n"//
+                                        "ignored as they are handled by the server.";      //
 string_view menuIngameDefaultsDesc    = "These options decide what the ingame options are\n"
                                         "set to when creating a save file. The new ingame\n"
                                         "options can be changed in the Custom Info Menu."; //

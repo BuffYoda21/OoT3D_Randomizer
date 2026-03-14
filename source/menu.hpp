@@ -17,6 +17,7 @@
 #define SAVE_CUSTOM_COSMETIC_PRESET 11
 #define DELETE_CUSTOM_COSMETIC_PRESET 12
 #define RESET_TO_DEFAULT_COSMETICS 13
+#define ARCHIPELAGO_MULTIWORLD 14
 
 #define MAX_SUBMENUS_ON_SCREEN 27
 #define MAX_SUBMENU_SETTINGS_ON_SCREEN 13
@@ -48,6 +49,7 @@ void UpdateOptionSubMenu(u32 kDown, u32 kHeld);
 void UpdatePremadePresetsMenu(u32 kDown);
 void UpdateCustomPresetsMenu(u32 kDown, PresetType presetType = PresetType::RANDOMIZATION);
 void UpdateResetToDefaultsMenu(u32 kdown, PresetType presetType = PresetType::RANDOMIZATION);
+void UpdateArchipelagoMultiworldMenu(u32 kDown);
 void UpdateGenerateMenu(u32 kDown);
 void GoToMenu(Menu* newMenu);
 void PrintMainMenu();
@@ -56,6 +58,7 @@ void PrintSubMenu();
 void PrintPremadePresetsMenu(u32 kDown);
 void PrintCustomPresetsMenu(PresetType presetType = PresetType::RANDOMIZATION);
 void PrintResetToDefaultsMenu();
+void PrintArchipelagoMultiworldMenu();
 void PrintGenerateMenu();
 void ClearDescription();
 void PrintDescription(std::string_view description);

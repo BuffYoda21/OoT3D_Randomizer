@@ -1433,6 +1433,7 @@ Menu gameplaySettings         = Menu::SubMenu("Gameplay Settings",          &gam
 Menu multiplayerSettings      = Menu::SubMenu("Multiplayer Settings",       &multiplayerOptions);
 Menu personalization          = Menu::SubMenu("Personalization Settings",   &personalizationOptions, menuPersonalizationDesc);
 Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
+Menu archipelagoMultiworld    = Menu::Action ("Archipelago Multiworld",     ARCHIPELAGO_MULTIWORLD, archipelagoMultiworldDesc);
 Menu generateRandomizer       = Menu::Action ("Generate Randomizer",        GENERATE_MODE);
 
 // adding a menu with no options crashes, might fix later
@@ -1451,6 +1452,7 @@ std::vector<Menu *> mainMenu = {
     &multiplayerSettings,
     &personalization,
     &settingsPresets,
+    &archipelagoMultiworld,
     &generateRandomizer,
 };
 // clang-format on
