@@ -2,13 +2,16 @@
 
 #include <string>
 
-struct APSettings {
-    std::string url  = "archipelago.gg";
-    int port         = 12345;
-    std::string slot = "player 1";
-    std::string password;
+#pragma pack(push, 1)
+struct APHeader {
+    char identifier[8];
+    uint8_t version   = 1;
+    uint8_t listening = 0; // 0 = no, 1 = yes
+    char slotName[17];
 };
+#pragma pack(pop)
 
-extern APSettings apSettings;
+extern std::string apSlotName;
+extern APHeader g_apHeader;
 
-void ConnectAndGenerate();
+bool ConnectAndGenerate();

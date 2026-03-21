@@ -157,8 +157,8 @@ void MoveCursor(u32 kDown, bool updatedByHeld) {
             max = presetEntries.size();
         } else if (currentMenu->mode == GENERATE_MODE) { // Generate menu: 2 options
             max = 2;
-        } else if (currentMenu->mode == ARCHIPELAGO_MULTIWORLD) { // Archipelago Multiworld menu: 5 options
-            max = 5;
+        } else if (currentMenu->mode == ARCHIPELAGO_MULTIWORLD) { // Archipelago Multiworld menu: 2 options
+            max = 2;
         } else if (currentMenu->itemsList != nullptr) {
             max = currentMenu->itemsList->size(); // Default max: Number of items in menu
         }
@@ -277,6 +277,11 @@ void MenuUpdate(u32 kDown, bool updatedByHeld, u32 kHeld) {
             printf("\x1b[11;21H%s", Settings::seed.c_str());
             seedChanged = false;
         }
+    }
+
+    // Tell any potential AP client that this 3DS is no longer listening
+    if (currentMenu->mode != ARCHIPELAGO_MULTIWORLD) {
+        g_apHeader.listening = 0;
     }
 
     // Print current menu (if applicable)
@@ -448,35 +453,14 @@ void UpdateArchipelagoMultiworldMenu(u32 kDown) {
     // clear any potential message
     ClearDescription();
     if (kDown & KEY_A) {
-        std::string portStr;
-
         switch (currentMenu->menuIdx) {
-            case 0: // Server URL
-                apSettings.url = GetInput("Server URL");
+            case 0: // Slot Name
+                apSlotName = GetInput("Slot Name");
                 break;
-            case 1: // Server Port
-                portStr = GetInput("Server Port");
-
-                // Ignore if too long or empty
-                if (portStr.empty() || portStr.size() > 5) {
-                    break;
-                }
-
-                // Ensure all chars are digits
-                if (!std::all_of(portStr.begin(), portStr.end(), ::isdigit)) {
-                    break;
-                }
-
-                // Convert
-                apSettings.port = std::stoi(portStr);
-                break;
-            case 2: // Slot Name
-                apSettings.slot = GetInput("Slot Name");
-                break;
-            case 3: // Password
-                apSettings.password = GetInput("Password");
-                break;
-            case 4: // Connect and Generate
+            case 1: // Connect and Generate
+                consoleSelect(&topScreen);
+                // clear any potential message
+                ClearDescription();
                 ConnectAndGenerate();
                 break;
         }
@@ -737,10 +721,7 @@ void PrintResetToDefaultsMenu() {
 void PrintArchipelagoMultiworldMenu() {
     consoleSelect(&bottomScreen);
 
-    std::vector<std::string> apOptions = { "Server URL: " + apSettings.url,
-                                           "Server Port: " + std::to_string(apSettings.port),
-                                           "Slot Name: " + apSettings.slot, "Password: " + apSettings.password,
-                                           "Connect and Generate" };
+    std::vector<std::string> apOptions = { "Slot Name: " + apSlotName, "Connect and Generate" };
 
     for (u8 i = 0; i < apOptions.size(); i++) {
 
