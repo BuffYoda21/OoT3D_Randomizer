@@ -21,5 +21,6 @@ build-ap/*
 *.ips
 *.zar
 source/patch_symbols*.hpp
+source/3DS/patch_symbols*.hpp
 .DS_Store
 !CMakeLists.txt
