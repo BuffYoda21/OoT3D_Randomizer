@@ -2,6 +2,8 @@
 *vs/*
 backup/*
 build/*
+build-3ds/*
+build-ap/*
 *.txt
 *.bin
 *.elf
@@ -20,3 +22,4 @@ build/*
 *.zar
 source/patch_symbols*.hpp
 .DS_Store
+!CMakeLists.txt
