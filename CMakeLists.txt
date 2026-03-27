@@ -5,11 +5,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src)
 
-file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+file(GLOB_RECURSE SOURCE CONFIGURE_DEPENDS
     source/AP/*.cpp
     source/AP/*.c
 )
 
-add_executable(tester
-    ${SRC_FILES}
+add_library(OoT3DR SHARED
+    ${SOURCE}
 )
+
+target_link_options(OoT3DR PRIVATE -static -static-libgcc -static-libstdc++)
