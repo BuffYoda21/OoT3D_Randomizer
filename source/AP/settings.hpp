@@ -24,12 +24,36 @@
 
 class Option {
   public:
-    static Option Bool(std::string name_, std::vector<std::string> options_, u8 defaultOption_ = 0) {
-        return Option{ false, std::move(name_), std::move(options_), defaultOption_ };
+    static Option Bool(std::string name_, std::vector<std::string> options_,
+                       std::vector<std::string_view> optionDescriptions_,
+                       OptionCategory category_ = OptionCategory::Setting, u8 defaultOption_ = 0,
+                       bool defaultHidden_ = false) {
+        return Option{ false,     u8{ 0 },        std::move(name_), std::move(options_), std::move(optionDescriptions_),
+                       category_, defaultOption_, defaultHidden_ };
     }
 
-    static Option U8(std::string name_, std::vector<std::string> options_, u8 defaultOption_ = 0) {
-        return Option{ u8{ 0 }, std::move(name_), std::move(options_), defaultOption_ };
+    static Option U8(std::string name_, std::vector<std::string> options_,
+                     std::vector<std::string_view> optionDescriptions_,
+                     OptionCategory category_ = OptionCategory::Setting, u8 defaultOption_ = 0,
+                     bool defaultHidden_ = false) {
+        return Option{ u8{ 0 },   u8{ 0 },        std::move(name_), std::move(options_), std::move(optionDescriptions_),
+                       category_, defaultOption_, defaultHidden_ };
+    }
+
+    static Option Bool(u8 indent_, std::string name_, std::vector<std::string> options_,
+                       std::vector<std::string_view> optionDescriptions_,
+                       OptionCategory category_ = OptionCategory::Setting, u8 defaultOption_ = 0,
+                       bool defaultHidden_ = false) {
+        return Option{ false,     indent_,        std::move(name_), std::move(options_), std::move(optionDescriptions_),
+                       category_, defaultOption_, defaultHidden_ };
+    }
+
+    static Option U8(u8 indent_, std::string name_, std::vector<std::string> options_,
+                     std::vector<std::string_view> optionDescriptions_,
+                     OptionCategory category_ = OptionCategory::Setting, u8 defaultOption_ = 0,
+                     bool defaultHidden_ = false) {
+        return Option{ u8{ 0 },   indent_,        std::move(name_), std::move(options_), std::move(optionDescriptions_),
+                       category_, defaultOption_, defaultHidden_ };
     }
 
     template <typename T> T Value() const {
@@ -63,7 +87,7 @@ class Option {
         SetToDefault();
     }
 
-    const std::vector<std::string>& GetOptions() {
+    const std::vector<std::string>& GetOptions() const {
         return options;
     }
 
@@ -77,6 +101,14 @@ class Option {
 
     const std::string& GetSelectedOptionText() const {
         return options[selectedOption];
+    }
+
+    std::vector<std::string_view> GetAllOptionDescriptions() const {
+        return optionDescriptions;
+    }
+
+    u8 GetDefaultOptionIndex() const {
+        return defaultOption;
     }
 
     void SetSelectedOptionText(std::string newText) {
@@ -138,27 +170,37 @@ class Option {
     }
 
   private:
-    Option(u8 var_, std::string name_, std::vector<std::string> options_, u8 defaultOption_)
-        : var(var_), name(std::move(name_)), options(std::move(options_)), defaultOption(defaultOption_) {
+    Option(u8 var_, u8 indent_, std::string name_, std::vector<std::string> options_,
+           std::vector<std::string_view> optionDescriptions_, OptionCategory category_, u8 defaultOption_,
+           bool defaultHidden_)
+        : var(var_), indent(indent_), name(std::move(name_)), options(std::move(options_)),
+          optionDescriptions(std::move(optionDescriptions_)), category(category_), defaultOption(defaultOption_),
+          defaultHidden(defaultHidden_) {
         selectedOption = defaultOption;
+        hidden         = defaultHidden;
         SetVariable();
     }
 
-    Option(bool var_, std::string name_, std::vector<std::string> options_, u8 defaultOption_)
-        : var(var_), name(std::move(name_)), options(std::move(options_)), defaultOption(defaultOption_) {
+    Option(bool var_, u8 indent_, std::string name_, std::vector<std::string> options_,
+           std::vector<std::string_view> optionDescriptions_, OptionCategory category_, u8 defaultOption_,
+           bool defaultHidden_)
+        : var(var_), indent(indent_), name(std::move(name_)), options(std::move(options_)),
+          optionDescriptions(std::move(optionDescriptions_)), category(category_), defaultOption(defaultOption_),
+          defaultHidden(defaultHidden_) {
         selectedOption = defaultOption;
+        hidden         = defaultHidden;
         SetVariable();
     }
 
     std::variant<bool, u8> var;
-    // u8 indent = 0;
+    u8 indent = 0;
     std::string name;
     std::vector<std::string> options;
-    // std::vector<std::string_view> optionDescriptions;
+    std::vector<std::string_view> optionDescriptions;
     u8 selectedOption = 0;
     // bool locked       = false;
-    // bool hidden       = false;
-    // OptionCategory category;
+    bool hidden = false;
+    OptionCategory category;
     u8 defaultOption   = 0;
     bool defaultHidden = false;
 };
@@ -251,6 +293,7 @@ namespace Settings {
 void UpdateSettings();
 SettingsContext FillContext();
 void InitSettings();
+std::vector<std::pair<std::string, std::vector<Option*>>> GetApSettings();
 void SetDefaultSettings(bool forCosmetics = false);
 void ResolveExcludedLocationConflicts();
 void RandomizeAllSettings(const bool selectOptions = false);
@@ -274,6 +317,8 @@ std::string TitleId();
 extern std::string seed;
 extern std::string version;
 extern std::array<u8, 5> hashIconIndexes;
+
+extern std::vector<std::pair<std::string, std::vector<Option*>>> apSettings;
 
 extern Option OpenForest;
 extern Option OpenKakariko;

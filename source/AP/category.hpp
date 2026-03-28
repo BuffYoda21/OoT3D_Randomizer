@@ -66,3 +66,9 @@ enum class Category {
     cFrogRupees,
     cFreestandingRupee,
 };
+
+enum class OptionCategory {
+    Setting,
+    Cosmetic,
+    Toggle,
+};
