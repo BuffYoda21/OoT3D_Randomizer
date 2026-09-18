@@ -79,8 +79,8 @@ static ItemRow rItemTable[] = {
     [GI_CLAIM_CHECK]        = ITEM_ROW(0x53, CHEST_MAJOR,     0x37, 0x000A,   0x0142, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_OwnAdultTrade, 55, -1), // Claim Check
     [GI_SWORD_KOKIRI]       = ITEM_ROW(0x53, CHEST_MAJOR,     0x3B, 0x00A4,   0x018D, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_GiveChildKokiriSword, -1, -1), // Kokiri Sword
     [GI_SWORD_KNIFE]        = ITEM_ROW(0x53, CHEST_MAJOR,     0x3D, 0x004B,   0x00F8, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_None, -1, -1), // Giant's Knife
-    [GI_SHIELD_DEKU]        = ITEM_ROW(0x53, CHEST_JUNK,      0x3E, 0x004C,   0x00CB, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_None, -1, -1), // Deku Shield
-    [GI_SHIELD_HYLIAN]      = ITEM_ROW(0x53, CHEST_JUNK,      0x3F, 0x004D,   0x00DC, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_None, -1, -1), // Hylian Shield
+    [GI_SHIELD_DEKU]        = ITEM_ROW(0x53, CHEST_JUNK,      0x3E, 0x004C,   0x00CB, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_Shield, EQUIP_VALUE_SHIELD_DEKU, -1), // Deku Shield
+    [GI_SHIELD_HYLIAN]      = ITEM_ROW(0x53, CHEST_JUNK,      0x3F, 0x004D,   0x00DC, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_Shield, EQUIP_VALUE_SHIELD_HYLIAN, -1), // Hylian Shield
     [GI_SHIELD_MIRROR]      = ITEM_ROW(0x53, CHEST_MAJOR,     0x40, 0x004E,   0x00EE, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_None, -1, -1), // Mirror Shield
     [GI_TUNIC_GORON]        = ITEM_ROW(0x53, CHEST_MAJOR,     0x42, 0x0050,   0x00F2, 0x00, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_None, -1, -1), // Goron Tunic
     [GI_TUNIC_ZORA]         = ITEM_ROW(0x53, CHEST_MAJOR,     0x43, 0x0051,   0x00F2, 0x01, 0xFF, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_None, -1, -1), // Zora Tunic
@@ -331,6 +331,7 @@ static ItemRow rItemTable[] = {
     [GI_OCARINA_BUTTON_A]   = ITEM_ROW(0x53, CHEST_MAJOR,     0x41, 0x93F4,   0x0123, 0x00, 0xFF, 0xFF, 0xFF,   0x04, ItemUpgrade_None, ItemEffect_OcarinaNote, OCARINA_BUTTON_A, -1), // Ocarina Note Button A
 
     [GI_RUPOOR]             = ITEM_ROW(0x53, CHEST_MAJOR,     0x41, 0x9002,   0x0083, 0x00, 0xFF, 0xFF, 0xFF,   0x6D, ItemUpgrade_None, ItemEffect_Rupoor, -1, -1), // Rupoor
+    [GI_UNBOTTLED_BIG_POE]  = ITEM_ROW(0x53, CHEST_MAJOR,     0x41, 0x9080,   0x0084, 0x01, 0x00, 0xFF, 0xFF,   0xFF, ItemUpgrade_None, ItemEffect_UnbottledBigPoe, -1, -1), // Unbottled spirit for Big Poe Shuffle
 };
 // clang-format on
 

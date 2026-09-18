@@ -1,5 +1,8 @@
 #pragma once
 
+#include "s_item_override.h"
+#include "s_spoiler_data.h"
+
 #include <algorithm>
 #include <array>
 #include <cstdio>
@@ -8,12 +11,8 @@
 #include <string>
 #include <unistd.h>
 #include <vector>
-
 #include <3ds.h>
 
-#include "../code/include/z3D/z3D.h"
-#include "../code/src/item_override.h"
-#include "../code/src/spoiler_data.h"
 #include "category.hpp"
 #include "item_list.hpp"
 #include "hint_list.hpp"
@@ -121,6 +120,7 @@ class ItemLocation {
         : scene(scene_), type(type_), flag(flag_), name(std::move(name_)), hintKey(hintKey_), vanillaItem(vanillaItem_),
           categories(std::move(categories_)), price(price_), collectionCheck(collectionCheck_),
           collectionCheckGroup(collectionCheckGroup_) {
+        OnInit();
     }
 
     ItemOverride_Key Key() const {
@@ -184,6 +184,7 @@ class ItemLocation {
     void SetPlacedItem(const ItemKey item) {
         placedItem = item;
         SetPrice(ItemTable(placedItem).GetPrice());
+        overridden = true;
     }
 
     // Saves an item to be set as placedItem later
@@ -194,6 +195,8 @@ class ItemLocation {
     // Place the vanilla item in this location
     void PlaceVanillaItem() {
         placedItem = vanillaItem;
+        // Keep override only when it is required to give the vanilla item.
+        overridden = (type == ItemLocationType::Delayed || type == ItemLocationType::TempleReward);
     }
 
     void ApplyPlacedItemEffect() {
@@ -204,6 +207,7 @@ class ItemLocation {
     void SaveDelayedItem() {
         placedItem  = delayedItem;
         delayedItem = NONE;
+        overridden  = true;
     }
 
     u16 GetPrice() const {
@@ -271,14 +275,6 @@ class ItemLocation {
         hintedAt = true;
     }
 
-    bool IsHidden() const {
-        return hidden;
-    }
-
-    void SetHidden(const bool hidden_) {
-        hidden = hidden_;
-    }
-
     bool IsHintable() const {
         return isHintable;
     }
@@ -293,6 +289,10 @@ class ItemLocation {
 
     AreaKey GetParentRegionKey() const {
         return parentRegion;
+    }
+
+    bool IsOverridden() {
+        return overridden;
     }
 
     void AddExcludeOption() {
@@ -434,10 +434,12 @@ class ItemLocation {
         isHintable         = false;
         price              = 0;
         hasShopsanityPrice = false;
-        hidden             = false;
+        overridden         = false;
     }
 
   private:
+    void OnInit(void);
+
     u8 scene;
     ItemLocationType type;
     u8 flag;
@@ -458,7 +460,7 @@ class ItemLocation {
     bool isHintable         = false;
     AreaKey parentRegion    = NONE;
     bool hasShopsanityPrice = false;
-    bool hidden             = false;
+    bool overridden         = false;
 };
 
 class ItemOverride_Compare {
@@ -497,7 +499,7 @@ extern bool showItemProgress;
 extern u16 itemsPlaced;
 
 void GenerateLocationPool();
-void PlaceItemInLocation(LocationKey loc, ItemKey item, bool applyEffectImmediately = false, bool setHidden = false);
+void PlaceItemInLocation(LocationKey loc, ItemKey item, bool applyEffectImmediately = false);
 std::vector<LocationKey> GetLocations(const std::vector<LocationKey>& locationPool, Category categoryInclude,
                                       Category categoryExclude = Category::cNull);
 void LocationReset();

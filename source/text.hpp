@@ -56,14 +56,14 @@ class Text {
         if (EURfrench.length() > 0) {
             return EURfrench;
         }
-        return NAenglish;
+        return GetNAFrench();
     }
 
     const std::string& GetEURSpanish() const {
         if (EURspanish.length() > 0) {
             return EURspanish;
         }
-        return NAenglish;
+        return GetNASpanish();
     }
 
     const std::string& GetEURItalian() const {
@@ -131,7 +131,7 @@ class Text {
             size_t position = str->find(oldStr);
             while (position != std::string::npos) {
                 str->replace(position, oldStr.length(), newStr);
-                position = str->find(oldStr);
+                position = str->find(oldStr, position + newStr.length());
             }
         }
     }

@@ -1,10 +1,12 @@
 #ifndef _Z3DEFFECT_H_
 #define _Z3DEFFECT_H_
 
-#include "z3Dvec.h"
-#include "z3Dcolor.h"
+#include "s_types.h"
+#include "s_colors.h"
 
-/* Effects */
+/*-------------------------------
+|            Effects            |
+-------------------------------*/
 
 #define SPARK_COUNT 24
 #define BLURE_COUNT 25
@@ -76,14 +78,33 @@ typedef struct EffectContext {
 } EffectContext;
 _Static_assert(sizeof(EffectContext) == 0xD250, "EffectContext size");
 
-#define gEffectContext (*(EffectContext*)GAME_ADDR(0x58B2E0))
+typedef struct EffectBlureInit2 {
+    /* 0x00 */ s32 calcMode;
+    /* 0x04 */ u16 flags;
+    /* 0x06 */ Color_RGBA8 p1StartColor;
+    /* 0x0A */ Color_RGBA8 p2StartColor;
+    /* 0x0E */ Color_RGBA8 p1EndColor;
+    /* 0x12 */ Color_RGBA8 p2EndColor;
+    /* 0x16 */ u8 elemDuration;
+    /* 0x17 */ u8 unkFlag;
+    /* 0x18 */ u8 drawMode; // 0: simple; 1: simple with alt colors; 2+: smooth
+    /* 0x19 */ u8 mode4Param;
+    /* 0x1A */ Color_RGBA8 altPrimColor; // used with drawMode 1
+    /* 0x1E */ Color_RGBA8 altEnvColor;  // used with drawMode 1
+    /* 0x22 */ char unk_22[0x0A];
+} EffectBlureInit2;
+_Static_assert(sizeof(EffectBlureInit2) == 0x2C, "EffectBlureInit2 size");
 
-#define EffectBlure_Update ((void (*)(EffectBlure*))GAME_ADDR(0x227000))
+extern EffectBlureInit2 Player_SwordBlureEffectInitParams;
+extern EffectContext gEffectContext;
 
-typedef void (*Effect_Delete_proc)(struct GlobalContext* globalCtx, s32 index);
-#define Effect_Delete ((Effect_Delete_proc)GAME_ADDR(0x34F0F4))
+void EffectBlure_Update(EffectBlure*);
+void Effect_Delete(struct GlobalContext* globalCtx, s32 index);
+void* Effect_GetByIndex(s32 index);
 
-/* Effect Soft Sprites */
+/*-------------------------------
+|      Effect Soft Sprites      |
+-------------------------------*/
 
 typedef enum EffectSsType {
     /* 0x00 */ EFFECT_SS_DUST,
@@ -151,9 +172,12 @@ typedef struct EffectSsInfo {
     // ...
 } EffectSsInfo;
 
-#define gEffectSsInfo (*(EffectSsInfo*)GAME_ADDR(0x598530))
+extern EffectSsInfo gEffectSsInfo;
 
-typedef void (*EffectSs_Delete_proc)(EffectSs* effectSs);
-#define EffectSs_Delete ((EffectSs_Delete_proc)GAME_ADDR(0x2D6A50))
+void EffectSs_Delete(EffectSs* effectSs);
+
+void EffectSsDeadDb_Spawn(struct GlobalContext* globalCtx, Vec3f* pos, Vec3f* velocity, Vec3f* accel, s16 scale,
+                          s16 scaleStep, s16 primR, s16 primG, s16 primB, s16 primA, s16 envR, s16 envG, s16 envB,
+                          s16 unused, s32 frameDuration, s16 playSfx);
 
 #endif //_Z3DEFFECT_H_

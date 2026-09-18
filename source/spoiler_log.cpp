@@ -13,6 +13,7 @@
 #include "gold_skulltulas.hpp"
 #include "enemizer.hpp"
 #include "ocarina_notes.hpp"
+#include "globals.hpp"
 
 #include <3ds.h>
 #include <cstdio>
@@ -54,7 +55,6 @@ void InitLogDirectories(FS_Archive sdmcArchive) {
     const char* stylesheetDest = "/OoT3DR/Logs/spoiler-log.css";
 
     const auto printInfo = [&](int progress) {
-        consoleClear();
         printf("\x1b[10;10HCreating Log Directories");
         printf("\x1b[11;10HProgress: %d/%d", progress, dirs.size());
     };
@@ -190,6 +190,14 @@ void WriteIngameSpoilerLog() {
                   (loc->IsCategory(Category::cVanillaGFSmallKey) || loc->GetHintKey() == GF_GERUDO_TOKEN)) ||
                  (Settings::GerudoFortress.Is(GERUDOFORTRESS_FAST) && loc->IsCategory(Category::cVanillaGFSmallKey) &&
                   loc->GetHintKey() != GF_NORTH_F1_CARPENTER)) {
+            continue;
+        }
+        // Freestanding Rupees
+        else if (loc->IsCategory(Category::cFreestandingRupee) && !Settings::ShuffleRupees) {
+            continue;
+        }
+        // Big Poes
+        else if (loc->IsCategory(Category::cBigPoe) && !Settings::ShuffleBigPoes) {
             continue;
         }
 
@@ -749,7 +757,7 @@ static void WriteRandomizedEnemies(tinyxml2::XMLDocument& spoilerLog) {
 
     for (auto& scene : scenes) {
         auto sceneNode        = parentNode->InsertNewChildElement("scene");
-        std::string sceneName = std::to_string(scene.first) + " - " + sceneNames[scene.first];
+        std::string sceneName = std::to_string(scene.first) + " - " + SceneNames[scene.first];
         sceneNode->SetAttribute("name", sceneName.c_str());
 
         // Create sorted vector of layers
@@ -829,7 +837,7 @@ static void WriteAllLocations(tinyxml2::XMLDocument& spoilerLog, const bool coll
     auto parentNode = spoilerLog.NewElement("all-locations");
 
     for (const LocationKey key : allLocations) {
-        if (!Location(key)->IsHidden()) {
+        if (Location(key)->IsOverridden()) {
             WriteLocation(parentNode, key, true);
         }
     }
@@ -848,7 +856,7 @@ bool SpoilerLog_Write() {
     auto rootNode = spoilerLog.NewElement("spoiler-log");
     spoilerLog.InsertEndChild(rootNode);
 
-    rootNode->SetAttribute("version", Settings::version.c_str());
+    rootNode->SetAttribute("version", RandomizerVersion.c_str());
     rootNode->SetAttribute("seed", Settings::seed.c_str());
     rootNode->SetAttribute("hash", GetRandomizerHashAsString().c_str());
     rootNode->SetAttribute("xmlns:h", "http://www.w3.org/1999/xhtml");
@@ -901,7 +909,7 @@ bool PlacementLog_Write() {
     auto rootNode = placementLog.NewElement("placement-log");
     placementLog.InsertEndChild(rootNode);
 
-    rootNode->SetAttribute("version", Settings::version.c_str());
+    rootNode->SetAttribute("version", RandomizerVersion.c_str());
     rootNode->SetAttribute("seed", Settings::seed.c_str());
     rootNode->SetAttribute("hash", GetRandomizerHashAsString().c_str());
 

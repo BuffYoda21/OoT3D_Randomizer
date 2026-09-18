@@ -11,13 +11,14 @@
 #include "menu.hpp"
 #include "patch.hpp"
 #include "preset.hpp"
-#include "randomizer.hpp"
-#include "settings.hpp"
+#include "globals.hpp"
 #include "spoiler_log.hpp"
 #include "location_access.hpp"
 #include "debug.hpp"
 #include "music.hpp"
 #include "archipelago.hpp"
+
+bool gInitError = false;
 
 namespace {
 bool seedChanged;
@@ -35,12 +36,21 @@ void PrintTopScreen() {
     consoleSelect(&topScreen);
     consoleClear();
     printf("\x1b[2;11H%sOcarina of Time 3D Randomizer%s", CYAN, RESET);
-    printf("\x1b[3;18H%s%s-%s%s", CYAN, RANDOMIZER_VERSION, COMMIT_NUMBER, RESET);
+    int verCol = (50 - RandomizerVersion.length()) / 2 + 1;
+    printf("\x1b[3;%dH%s%s%s", verCol, CYAN, RandomizerVersion.c_str(), RESET);
     printf("\x1b[4;10HA/B/D-pad: Navigate Menu\n");
     printf("            Select: Exit to Homebrew Menu\n");
     printf("                 Y: New Random Seed\n");
     printf("                 X: Input Custom Seed\n");
     printf("\x1b[11;7HCurrent Seed: %s", Settings::seed.c_str());
+}
+
+void GfxInit(void) {
+    gfxInitDefault();
+    consoleInit(GFX_TOP, &topScreen);
+    consoleInit(GFX_BOTTOM, &bottomScreen);
+    consoleSelect(&topScreen);
+    printf("\x1b[5;20HInitializing...");
 }
 
 void MenuInit() {
@@ -55,10 +65,6 @@ void MenuInit() {
     currentMenu = main;
 
     srand(time(NULL));
-    consoleInit(GFX_TOP, &topScreen);
-    consoleInit(GFX_BOTTOM, &bottomScreen);
-
-    consoleSelect(&topScreen);
 
     // Create directories
     FS_Archive sdmcArchive;
@@ -90,6 +96,21 @@ void MenuInit() {
     // If Randomize all settings in a category is selected
     // Re-randomize them
     Settings::RandomizeAllSettings();
+
+    // If an error was detected during initialization, print error message and block the app.
+    if (gInitError) {
+        consoleClear();
+        printf("\x1b[5;13H\x1b[31mERROR!\x1b[37m Init checks failed!");
+        while (aptMainLoop()) {
+            hidScanInput();
+            if (hidKeysDown() & KEY_SELECT) {
+                break;
+            }
+        }
+        // Close the app.
+        gfxExit();
+        exit(0);
+    }
 
     PrintTopScreen();
 
@@ -820,6 +841,17 @@ void GenerateRandomizer() {
 
     if (!Settings::ValidateSettings()) {
         return;
+    }
+
+    if (Settings::MQDungeonCount.IsNot(0) && Settings::ShuffleRecoveryHearts) {
+        u8 posY = 5;
+        printf("\x1b[%d;0H"
+               "----------------------------------------"
+               "For your information: Recovery hearts\n"
+               "inside MQ dungeons will currently not\n"
+               "be shuffled.\n"
+               "----------------------------------------",
+               posY);
     }
 
     consoleSelect(&topScreen);
