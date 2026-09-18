@@ -1,7 +1,7 @@
 #ifndef _GROTTO_H_
 #define _GROTTO_H_
 
-#include "z3D/z3Dvec.h"
+#include "s_types.h"
 
 #define NUM_GROTTOS 33
 #define NOT_GROTTO 0
@@ -23,6 +23,7 @@ typedef struct {
     Vec3f pos;
 } GrottoReturnInfo;
 
+Bool Grotto_ReturnedFromGrotto();
 void Grotto_InitExitAndLoadLists(void);
 void Grotto_SetExitOverride(s16 originalIndex, s16 overrideIndex);
 void Grotto_SetLoadOverride(s16 originalIndex, s16 overrideIndex);

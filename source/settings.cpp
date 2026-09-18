@@ -1,7 +1,8 @@
-#include "settings.hpp"
+#include "s_enemy_souls.h"
 
 #include <unistd.h>
 
+#include "settings.hpp"
 #include "cosmetics.hpp"
 #include "dungeon.hpp"
 #include "fill.hpp"
@@ -9,15 +10,12 @@
 #include "music.hpp"
 #include "sound_effects.hpp"
 #include "random.hpp"
-#include "randomizer.hpp"
+#include "globals.hpp"
 #include "descriptions.hpp"
 #include "trial.hpp"
 #include "keys.hpp"
 #include "gold_skulltulas.hpp"
 #include "enemizer.hpp"
-
-#define CREATE_SOULMENUNAMES
-#include "../code/src/enemy_souls.h"
 
 using namespace Cosmetics;
 using namespace Dungeon;
@@ -27,7 +25,6 @@ using namespace SFX;
 
 namespace Settings {
 std::string seed;
-std::string version = RANDOMIZER_VERSION "-" COMMIT_NUMBER;
 std::array<u8, 5> hashIconIndexes;
 
 std::vector<std::string> NumOpts(int min, int max, int step = 1, std::string textBefore = {},
@@ -234,6 +231,8 @@ Option ShuffleFrogSongRupees  = Option::Bool("Shuffle Frog Rupees",    {"Off", "
 Option ShuffleEnemySouls      = Option::U8  ("Shuffle Enemy Souls",    {"Off", "All enemies", "Bosses only"},                             {enemySoulDesc});
 Option ShuffleOcarinaButtons  = Option::Bool("Shuffle Ocarina Buttons",{"Off", "On"},                                                     {ocarinaButtonsDesc});
 Option ShuffleRupees          = Option::Bool("Shuffle Standing Rupees",{"Off", "On"},                                                     {shuffleRupeesDesc});
+Option ShuffleRecoveryHearts  = Option::Bool("Shuffle Recovery Hearts",{"Off", "On"},                                                     {shuffleRecoveryHeartsDesc});
+Option ShuffleBigPoes         = Option::Bool("Shuffle Big Poes",       {"Off", "On"},                                                     {shuffleBigPoesDesc});
 std::vector<Option *> shuffleOptions = {
     &RandomizeShuffle,
     &ShuffleRewards,
@@ -258,6 +257,8 @@ std::vector<Option *> shuffleOptions = {
     &ShuffleEnemySouls,
     &ShuffleOcarinaButtons,
     &ShuffleRupees,
+    &ShuffleRecoveryHearts,
+    &ShuffleBigPoes,
 };
 
 // Shuffle Dungeon Items
@@ -359,6 +360,7 @@ std::vector<Option *> timesaverOptions = {
 Option Racing              = Option::Bool("Racing",                 {"Off", "On"},                                                          {racingDesc});
 Option GossipStoneHints    = Option::U8  ("Gossip Stone Hints",     {"No Hints", "Need Nothing", "Mask of Truth", "Shard of Agony"},        {gossipStonesHintsDesc},                                                                                          OptionCategory::Setting,    HINTS_NEED_NOTHING);
 Option HintDistribution    = Option::U8  (2, "Hint Distribution",   {"Useless", "Balanced", "Strong", "Very Strong", "Playthrough"},        {uselessHintsDesc, balancedHintsDesc, strongHintsDesc, veryStrongHintsDesc, playthroughHintsDesc},                OptionCategory::Setting,    HINTDISTRIBUTION_BALANCED);
+Option HintSpecificity     = Option::U8  (4, "Specificity",         {"General Area", "Exact Location"},                                     {hintSpecificityDesc});
 Option BonusGossipHints    = Option::Bool(4, "Bonus Hints",         {"Off", "On"},                                                          {bonusGossipHintsDesc});
 Option MiscHints           = Option::U8  ("Miscellaneous Hints",    {"All Disabled",  "All Enabled", "Choose"},                             {miscHintsDesc},                                                                                                  OptionCategory::Setting,    TOGGLE_ALL_ENABLED);
 Option ToTAltarHints       = Option::Bool(2, "Temple of Time Altar",{"Off", "On"},                                                          {totAltarHintsDesc});
@@ -372,8 +374,9 @@ Option CompassesShowWotH   = Option::U8  ("Compasses Show WotH",    {"No", "Yes"
 Option MapsShowDungeonMode = Option::U8  ("Maps Show Dungeon Modes",{"No", "Yes"},                                                          {mapsShowDungeonModesDesc},                                                                                       OptionCategory::Setting,    ON);
 Option StartingTime        = Option::U8  ("Starting Time",          {"Day", "Night"},                                                       {startingTimeDesc});
 Option ChestAnimations     = Option::Bool("Chest Animations",       {"Always Fast", "Match Contents"},                                      {chestAnimDesc});
-Option ChestAppearance     = Option::U8  ("Chest Appearance Mod",   {"Vanilla", "Texture", "Size + Texture", "Classic CSMC"},             {chestVanillaDesc, chestTextureDesc, chestSizeTextureDesc, chestClassicDesc});
+Option ChestAppearance     = Option::U8  ("Chest Appearance Mod",   {"Vanilla", "Texture", "Size + Texture", "Classic CSMC"},               {chestVanillaDesc, chestTextureDesc, chestSizeTextureDesc, chestClassicDesc});
 Option ChestAgony          = Option::Bool(2, "Need Shard of Agony", {"No", "Yes"},                                                          {chestAgonyDesc});
+Option ExtraShields        = Option::U8  ("Keep Extra Shields",     {"Never (Vanilla)", "Only if random", "Always allowed"},                {extraShieldsDesc},                                                                                               OptionCategory::Setting,    EXTRASHIELDS_RANDOM_ONLY);
 Option GenerateSpoilerLog  = Option::Bool("Generate Spoiler Log",   {"No", "Yes"},                                                          {""},                                                                                                             OptionCategory::Setting,    ON);
 Option IngameSpoilers      = Option::Bool("Ingame Spoilers",        {"Hide", "Show"},                                                       {ingameSpoilersHideDesc, ingameSpoilersShowDesc });
 bool HasNightStart         = false;
@@ -381,6 +384,7 @@ std::vector<Option *> miscOptions = {
     &Racing,
     &GossipStoneHints,
     &HintDistribution,
+    &HintSpecificity,
     &BonusGossipHints,
     &MiscHints,
     &ToTAltarHints,
@@ -396,6 +400,7 @@ std::vector<Option *> miscOptions = {
     &ChestAnimations,
     &ChestAppearance,
     &ChestAgony,
+    &ExtraShields,
     &GenerateSpoilerLog,
     &IngameSpoilers,
 };
@@ -482,6 +487,7 @@ Option FreeCamera          = Option::Bool("Free Camera",            {"Off", "On"
 Option RandomGsLocations   = Option::Bool("Random GS Locations",    {"Off", "On"},                                                          {randomGsLocationsDesc});
 Option GsLocGuaranteeNew   = Option::Bool(2, "Guarantee New",       {"Off", "On"},                                                          {gsLocGuaranteeNewDesc});
 Option RandomSongNotes     = Option::Bool("Random Ocarina Melodies",{"Off", "On"},                                                          {randomSongNotesDesc});
+Option FrogSongTimeMult    = Option::U8("Frog Song Timer",          {"1x","2x","3x","4x"},                                                  {frogSongTimeMultDesc});
 std::vector<Option*> gameplayOptions = {
     &FastBunnyHood,
     &KeepFWWarpPoint,
@@ -505,6 +511,7 @@ std::vector<Option*> gameplayOptions = {
     &RandomGsLocations,
     &GsLocGuaranteeNew,
     &RandomSongNotes,
+    &FrogSongTimeMult,
 };
 
 // Excluded Locations (Individual definitions made in ItemLocation class)
@@ -1220,7 +1227,17 @@ static std::vector<std::string> weaponTrailOuterOptionNames = {
 #define SAME_AS_INNER_TRAIL (weaponTrailOuterOptionNames.size() - 1)
 static std::vector<std::string> weaponTrailInnerOptionNames = VectorCopyExceptLastElement(weaponTrailOuterOptionNames);
 
-static std::vector<std::string> trailDurationOptionNames = {
+static std::vector<std::string> swordTrailDurationOptionNames = {
+    "Disabled",
+    "Very short",
+    "Vanilla",
+    "Long",
+    "Very Long",
+    "Lightsaber",
+    "Space Tearing",
+};
+
+static std::vector<std::string> rangTrailDurationOptionNames = {
     "Disabled",
     "Very short",
     "Vanilla",
@@ -1236,6 +1253,44 @@ static std::vector<std::string> chuTrailDurationOptionNames = {
     "Long",
     "Very Long",
     "Hero's Path",
+};
+
+static std::vector<std::string> ganonBloodOptionNames = {
+    std::string(RANDOM_CHOICE_STR),
+    std::string(RANDOM_COLOR_STR),
+    std::string(CUSTOM_COLOR_STR),
+    "Vanilla Green",
+    "Original Red",
+    "White",
+    "Black",
+    "Red",
+    "Green",
+    "Blue",
+    "Yellow",
+    "Cyan",
+    "Magenta",
+    "Orange",
+    "Gold",
+    "Purple",
+    "Pink",
+};
+
+static std::vector<std::string> soullessColorOptionNames = {
+    std::string(RANDOM_CHOICE_STR),
+    std::string(RANDOM_COLOR_STR),
+    std::string(CUSTOM_COLOR_STR),
+    "Black",
+    "White",
+    "Red",
+    "Green",
+    "Blue",
+    "Yellow",
+    "Cyan",
+    "Magenta",
+    "Orange",
+    "Gold",
+    "Purple",
+    "Pink",
 };
 
 static std::vector<std::string_view> cosmeticDescriptions = {
@@ -1265,12 +1320,13 @@ Option CustomTrailEffects         = Option::Bool("Custom Trail Effects",     {"O
 Option ChosenSimpleMode           = Option::Bool(2, "Draw simple texture",   {"When necessary","Always"},   {necessarySimpleModeDesc,alwaysSimpleModeDesc},                                                                                                                   OptionCategory::Cosmetic);
 Option SwordTrailInnerColor       = Option::U8  (2, "Sword (Inner Color)",   weaponTrailInnerOptionNames,   {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color that appears from the base\nof the sword."},                                         OptionCategory::Cosmetic,                      3); // White
 Option SwordTrailOuterColor       = Option::U8  (2, "Sword (Outer Color)",   weaponTrailOuterOptionNames,   {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color that appears from the tip\nof the sword."},                                          OptionCategory::Cosmetic,    SAME_AS_INNER_TRAIL);
-Option SwordTrailDuration         = Option::U8  (2, "Sword (Duration)",      trailDurationOptionNames,      {"Select the duration for sword trails.\n\nIf too many trails are on screen, the duration\nmay be capped at Long for some of them."},                             OptionCategory::Cosmetic,                      2); // Vanilla
+Option SwordTrailDuration         = Option::U8  (2, "Sword (Duration)",      swordTrailDurationOptionNames, {"Select the duration for sword trails.\n\nIf too many trails are on screen, the duration\nmay be capped at Long for some of them."},                             OptionCategory::Cosmetic,  TRAILDURATION_VANILLA);
 Option BoomerangTrailColor        = Option::U8  (2, "Boomerang (Color)",     weaponTrailInnerOptionNames,   {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color for boomerang trails."},                                                             OptionCategory::Cosmetic,                      8); // Yellow
-Option BoomerangTrailDuration     = Option::U8  (2, "Boomerang (Duration)",  trailDurationOptionNames,      {"Select the duration for boomerang trails."},                                                                                                                    OptionCategory::Cosmetic,                      2); // Vanilla
+Option BoomerangTrailDuration     = Option::U8  (2, "Boomerang (Duration)",  rangTrailDurationOptionNames,  {"Select the duration for boomerang trails."},                                                                                                                    OptionCategory::Cosmetic,  TRAILDURATION_VANILLA);
 Option BombchuTrailInnerColor     = Option::U8  (2, "Bombchu (Inner Color)", weaponTrailInnerOptionNames,   {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color for the center of the\nbombchu trail."},                                             OptionCategory::Cosmetic,                      5); // Red
 Option BombchuTrailOuterColor     = Option::U8  (2, "Bombchu (Outer Color)", weaponTrailOuterOptionNames,   {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color for the sides of the\nbombchu trail."},                                              OptionCategory::Cosmetic,    SAME_AS_INNER_TRAIL);
-Option BombchuTrailDuration       = Option::U8  (2, "Bombchu (Duration)",    chuTrailDurationOptionNames,   {"Select the duration for bombchu trails."},                                                                                                                      OptionCategory::Cosmetic,                      2); // Vanilla
+Option BombchuTrailDuration       = Option::U8  (2, "Bombchu (Duration)",    chuTrailDurationOptionNames,   {"Select the duration for bombchu trails."},                                                                                                                      OptionCategory::Cosmetic,  TRAILDURATION_VANILLA);
+Option GanonBloodColor            = Option::U8  ("Ganon/dorf Blood Color",   ganonBloodOptionNames,         {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color of Ganondorf and Ganon's blood."},                                                   OptionCategory::Cosmetic,                      3); // Vanilla Green
 std::string finalChildTunicColor      = ChildTunicColor.GetSelectedOptionText();
 std::string finalKokiriTunicColor     = KokiriTunicColor.GetSelectedOptionText();
 std::string finalGoronTunicColor      = GoronTunicColor.GetSelectedOptionText();
@@ -1291,12 +1347,16 @@ Color_RGBA8 finalBoomerangColor = {0};
 u8 boomerangTrailColorMode = 0;
 std::string finalChuTrailInnerColor   = BombchuTrailInnerColor.GetSelectedOptionText();
 std::string finalChuTrailOuterColor   = BombchuTrailOuterColor.GetSelectedOptionText();
+Color_RGBA8 finalGanonBloodColor = { 0, 120, 0, 255 };
 
 Option ColoredKeys         = Option::Bool("Colored Small Keys",     {"Off", "On"},                                {coloredKeysDesc},                                                                                                                                  OptionCategory::Cosmetic);
 Option ColoredBossKeys     = Option::Bool("Colored Boss Keys",      {"Off", "On"},                                {coloredBossKeysDesc},                                                                                                                              OptionCategory::Cosmetic);
 Option MirrorWorld         = Option::U8  ("Mirror World",           {"Off", "On", "Scene", "Entrance", "Random"}, {mirrorWorldOffDesc, mirrorWorldOnDesc, mirrorWorldSceneDesc, mirrorWorldEntranceDesc, mirrorWorldRandomDesc},                                      OptionCategory::Cosmetic);
 Option BetaSoldOut         = Option::Bool("Beta Sold-Out Model",    {"Off", "On"},                                {betaSoldOutDesc},                                                                                                                                  OptionCategory::Cosmetic);
-Option SoullessEnemiesLook = Option::U8  ("Soulless Enemies Look",  {"Purple Flame", "Flashing"},                 {soullessPurpleFlameDesc, soullessFlashingDesc},                                                                                                    OptionCategory::Cosmetic);
+Option SoullessEnemiesLook = Option::U8  ("Soulless Enemies Look",  {"Vanilla", "Textureless", "Grayscale",
+                                                                     "Purple Flames", "Flashing"},                {soullessVanillaDesc, soullessTexturelessDesc, soullessGrayscaleDesc, soullessPurpleFlamesDesc, soullessFlashingDesc},                              OptionCategory::Cosmetic,     SOULLESSLOOK_TEXTURELESS);
+Option SoullessColor       = Option::U8  (2, "Soulless Color",      soullessColorOptionNames,                     {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC, "Select the color of soulless enemies."},                                                OptionCategory::Cosmetic,                            3); // Black
+Color_RGBA8 finalSoullessColor;
 
 std::vector<Option *> cosmeticOptions = {
     &CustomTunicColors,
@@ -1325,11 +1385,13 @@ std::vector<Option *> cosmeticOptions = {
     &BombchuTrailInnerColor,
     &BombchuTrailOuterColor,
     &BombchuTrailDuration,
+    &GanonBloodColor,
     &ColoredKeys,
     &ColoredBossKeys,
     &MirrorWorld,
     &BetaSoldOut,
     &SoullessEnemiesLook,
+    &SoullessColor,
 };
 
 static std::vector<std::string> musicOptions = {"Off", "On (Mixed)", "On (Grouped)", "On (Own)"};
@@ -1543,6 +1605,7 @@ SettingsContext FillContext() {
     ctx.shuffleChestMinigame   = ShuffleChestMinigame.Value<u8>();
     ctx.shuffleEnemySouls      = ShuffleEnemySouls.Value<u8>();
     ctx.shuffleOcarinaButtons  = (ShuffleOcarinaButtons) ? 1 : 0;
+    ctx.shuffleBigPoes         = (ShuffleBigPoes) ? 1 : 0;
 
     ctx.mapsAndCompasses   = MapsAndCompasses.Value<u8>();
     ctx.keysanity          = Keysanity.Value<u8>();
@@ -1603,6 +1666,7 @@ SettingsContext FillContext() {
     ctx.chestAnimations     = (ChestAnimations) ? 1 : 0;
     ctx.chestAppearance     = ChestAppearance.Value<u8>();
     ctx.chestAgony          = (ChestAgony) ? 1 : 0;
+    ctx.extraShields        = ExtraShields.Value<u8>();
     ctx.generateSpoilerLog  = (GenerateSpoilerLog) ? 1 : 0;
     ctx.ingameSpoilers      = (IngameSpoilers) ? 1 : 0;
     ctx.menuOpeningButton   = MenuOpeningButton.Value<u8>();
@@ -1621,6 +1685,7 @@ SettingsContext FillContext() {
     ctx.freeCamera          = (FreeCamera) ? 1 : 0;
     ctx.randomGsLocations   = (RandomGsLocations) ? 1 : 0;
     ctx.randomSongNotes     = (RandomSongNotes) ? 1 : 0;
+    ctx.frogSongTimerMult   = FrogSongTimeMult.Value<u8>();
 
     ctx.faroresWindAnywhere  = (FaroresWindAnywhere) ? 1 : 0;
     ctx.stickAsAdult         = (StickAsAdult) ? 1 : 0;
@@ -1678,6 +1743,7 @@ SettingsContext FillContext() {
     ctx.rainbowEnemyNaviOuterColor  = (EnemyNaviOuterColor.Value<u8>() == RAINBOW_NAVI) ? 1 : 0;
     ctx.rainbowPropNaviOuterColor   = (PropNaviOuterColor.Value<u8>() == RAINBOW_NAVI) ? 1 : 0;
     ctx.customTrailEffects          = (CustomTrailEffects) ? 1 : 0;
+    ctx.swordTrailDuration          = SwordTrailDuration.Value<u8>();
     ctx.rainbowSwordTrailInnerColor = (SwordTrailInnerColor.Value<u8>() == RAINBOW_TRAIL) ? 1 : 0;
     ctx.rainbowSwordTrailOuterColor = (SwordTrailOuterColor.Value<u8>() == RAINBOW_TRAIL) ? 1 : 0;
     ctx.boomerangTrailColor.r       = finalBoomerangColor.r;
@@ -1689,10 +1755,12 @@ SettingsContext FillContext() {
     ctx.rainbowChuTrailInnerColor   = (BombchuTrailInnerColor.Value<u8>() == RAINBOW_TRAIL) ? 1 : 0;
     ctx.rainbowChuTrailOuterColor   = (BombchuTrailOuterColor.Value<u8>() == RAINBOW_TRAIL) ? 1 : 0;
     ctx.bombchuTrailDuration        = BombchuTrailDuration.Value<u8>();
+    ctx.ganonBloodColor             = finalGanonBloodColor;
     ctx.mirrorWorld                 = MirrorWorld.Value<u8>();
     ctx.coloredKeys                 = (ColoredKeys) ? 1 : 0;
     ctx.coloredBossKeys             = (ColoredBossKeys) ? 1 : 0;
     ctx.soullessEnemiesLook         = SoullessEnemiesLook.Value<u8>();
+    ctx.soullessColor               = finalSoullessColor;
     ctx.shuffleSFX                  = ShuffleSFX.Value<u8>();
     ctx.shuffleSFXFootsteps         = (ShuffleSFXFootsteps) ? 1 : 0;
     ctx.shuffleSFXLinkVoice         = (ShuffleSFXLinkVoice) ? 1 : 0;
@@ -1827,7 +1895,7 @@ SettingsContext FillContext() {
 // One-time initialization
 void InitSettings() {
     enemizerListOptions = mapArrayToOptions(Enemizer::enemyTypes, [](Enemizer::EnemyType enemy) {
-        bool hidden = enemy.actorId == 0 || enemy.validLocTypes.empty();
+        bool hidden = enemy.id == ENEMY_INVALID || enemy.validLocTypes.empty();
         return Option::U8(enemy.name, { "Randomized", "Vanilla", "Removed" },
                           {
                               enemyRandomizedDesc,
@@ -2411,6 +2479,26 @@ void ForceChange(u32 kDown, Option* currentSetting) {
         startingInventory.ResetMenuIndex();
     }
 
+    if (ShuffleBigPoes) {
+        // If Big Poes are shuffled, prevent selecting Big Poe Bottles in the starting inventory.
+        std::vector<Option*> startingBottleOptions = {
+            &StartingBottle1,
+            &StartingBottle2,
+            &StartingBottle3,
+            &StartingBottle4,
+        };
+        for (Option* opt : startingBottleOptions) {
+            if (opt->Is(STARTINGBOTTLE_BIG_POE)) {
+                if (currentSetting == opt) {
+                    opt->ScrollOptionIndex(kDown);
+                } else {
+                    opt->SetSelectedIndex(STARTINGBOTTLE_POE);
+                }
+                opt->SetVariable();
+            }
+        }
+    }
+
     if (!RandomizeDungeon) {
         // Only show Medallion Count if setting Ganons Boss Key to LACS Medallions
         if (GanonsBossKey.Is(GANONSBOSSKEY_LACS_MEDALLIONS)) {
@@ -2488,14 +2576,17 @@ void ForceChange(u32 kDown, Option* currentSetting) {
     // Only show hint options if hints are enabled
     if (GossipStoneHints.Is(HINTS_NO_HINTS)) {
         HintDistribution.Hide();
-        BonusGossipHints.Hide();
+        HintDistribution.SetSelectedIndex(HINTDISTRIBUTION_BALANCED);
     } else {
         HintDistribution.Unhide();
-        if (HintDistribution.Is(HINTDISTRIBUTION_PLAYTHROUGH)) {
-            BonusGossipHints.Unhide();
-        } else {
-            BonusGossipHints.Hide();
-        }
+    }
+
+    if (HintDistribution.Is(HINTDISTRIBUTION_PLAYTHROUGH)) {
+        HintSpecificity.Unhide();
+        BonusGossipHints.Unhide();
+    } else {
+        HintSpecificity.Hide();
+        BonusGossipHints.Hide();
     }
 
     // Manage toggle for misc hints options
@@ -2796,12 +2887,19 @@ void ForceChange(u32 kDown, Option* currentSetting) {
         ChosenSimpleMode.SetSelectedIndex(OFF);
         SwordTrailInnerColor.SetSelectedIndex(3); // White
         SwordTrailOuterColor.SetSelectedIndex(SAME_AS_INNER_TRAIL);
-        SwordTrailDuration.SetSelectedIndex(2);     // Vanilla
-        BoomerangTrailColor.SetSelectedIndex(8);    // Yellow
-        BoomerangTrailDuration.SetSelectedIndex(2); // Vanilla
+        SwordTrailDuration.SetSelectedIndex(TRAILDURATION_VANILLA);
+        BoomerangTrailColor.SetSelectedIndex(8); // Yellow
+        BoomerangTrailDuration.SetSelectedIndex(TRAILDURATION_VANILLA);
         BombchuTrailInnerColor.SetSelectedIndex(5); // Red
         BombchuTrailOuterColor.SetSelectedIndex(SAME_AS_INNER_TRAIL);
-        BombchuTrailDuration.SetSelectedIndex(2); // Vanilla
+        BombchuTrailDuration.SetSelectedIndex(TRAILDURATION_VANILLA);
+    }
+
+    if (SoullessEnemiesLook.Is(SOULLESSLOOK_TEXTURELESS)) {
+        SoullessColor.Unhide();
+    } else {
+        SoullessColor.Hide();
+        SoullessColor.SetSelectedIndex(3); // Black
     }
 
     // Audio
@@ -2856,10 +2954,8 @@ bool IsMQOption(Option *option) {
 // Options that should be overridden and then restored after generating when racing is enabled
 std::vector<std::pair<Option*, u8>> racingOverrides = {
     { &QuickText, QUICKTEXT_TURBO },
-    { &SkipSongReplays, SONGREPLAYS_SKIP_NO_SFX },
     { &ColoredKeys, ON },
     { &ColoredBossKeys, ON },
-    { &SoullessEnemiesLook, SOULLESSLOOK_PURPLE_FLAME },
 };
 // clang-format on
 
@@ -2879,6 +2975,7 @@ std::vector<std::pair<Option*, u8>> vanillaLogicOverrides = {
     { &ShuffleFrogSongRupees, SHUFFLEFROGSONGRUPEES_OFF },
     { &ShuffleEnemySouls, OFF },
     { &ShuffleOcarinaButtons, OFF },
+    { &ShuffleBigPoes, OFF },
     { &Keysanity, KEYSANITY_ANY_DUNGEON }, // Set small keys to any dungeon so FiT basement door will be locked
     { &GossipStoneHints, HINTS_NO_HINTS },
 };
@@ -3090,6 +3187,12 @@ static void UpdateCosmetics() {
     } else {
         ChooseFinalColor(BombchuTrailOuterColor, finalChuTrailOuterColor, weaponTrailColors);
     }
+    // Ganon/dorf Blood
+    ChooseFinalColor(GanonBloodColor, tempString, ganonBloodColors);
+    finalGanonBloodColor = Cosmetics::HexStrToColorRGBA8(tempString);
+    // Soulless enemies
+    ChooseFinalColor(SoullessColor, tempString, soullessColors);
+    finalSoullessColor = Cosmetics::HexStrToColorRGBA8(tempString);
 }
 
 // Function to set flags depending on settings

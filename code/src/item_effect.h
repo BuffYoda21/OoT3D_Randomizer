@@ -28,6 +28,7 @@ void ItemEffect_OpenMaskShop(SaveContext* saveCtx, s16 arg1, s16 arg2);
 void PushSlotIntoInventoryMenu(u8 itemSlot);
 void ItemEffect_PlaceMagicArrowsInInventory(SaveContext* saveCtx, s16 arg1, s16 arg2);
 void ItemEffect_GiveChildKokiriSword(SaveContext* saveCtx, s16 arg1, s16 arg2);
+void ItemEffect_Shield(SaveContext* saveCtx, s16 shield, s16 arg2);
 void ItemEffect_GiveStone(SaveContext* saveCtx, s16 mask, s16 arg2);
 void ItemEffect_GiveMedallion(SaveContext* saveCtx, s16 mask, s16 arg2);
 void ItemEffect_MoveNabooru(SaveContext* saveCtx, s16 arg1, s16 arg2);
@@ -38,4 +39,6 @@ void ItemEffect_ShardOfAgony(SaveContext* saveCtx, s16 arg1, s16 arg2);
 void ItemEffect_EnemySoul(SaveContext* saveCtx, s16 soulId, s16 arg2);
 void ItemEffect_OcarinaNote(SaveContext* saveCtx, s16 buttonId, s16 arg2);
 void ItemEffect_Rupoor(SaveContext* saveCtx, s16 arg1, s16 arg2);
+void ItemEffect_UnbottledBigPoe(SaveContext* saveCtx, s16 arg1, s16 arg2);
+
 #endif //_ITEM_EFFECT_H_

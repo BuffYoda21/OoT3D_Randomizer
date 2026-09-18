@@ -29,6 +29,46 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"#pillars of wood# in the Deku Tree lead to", /*french*/"les #piliers de bois# dans l'arbre Mojo indiquent", /*spanish*/"los #salientes del Gran Árbol Deku# conducen a", /*italian*/"dei #pilastri di legno# nell'Albero Deku conducono verso", /*german*/"nahe #hölzerner Säulen# des Deku-Baumes, |wäre|wären|"},
     });
 
+    hintTable[DEKU_TREE_2F_FLOATING_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"#in a tree# floats", /*french*/"", /*spanish*/"", /*italian*/"#in un albero# galleggia||no|", /*german*/""},
+                     }, {},
+                       // clear text
+                       Text{"#the lower floating heart in the Deku Tree# is", /*french*/"", /*spanish*/"", /*italian*/"il #cuore fluttuante in basso# nell'Albero Deku è", /*german*/""
+    });
+
+    hintTable[DEKU_TREE_3F_FLOATING_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"#Deku's heart floated up to his brain# only to get replaced by", /*french*/"", /*spanish*/"", /*italian*/"il #cuore di Deku è salito in alto# ed è diventato", /*german*/""},
+                     }, {},
+                       // clear text
+                       Text{"#the higher floating heart in the Deku Tree# is", /*french*/"", /*spanish*/"", /*italian*/"il #cuore fluttuante in alto# nell'Albero Deku è", /*german*/""
+    });
+
+    hintTable[DEKU_TREE_B2F_UNDER_WATER_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"Queenie is cooking some soup with", /*french*/"", /*spanish*/"", /*italian*/"la #regina ha preparato una zuppa# con", /*german*/""},
+                     }, {},
+                       // clear text
+                       Text{"#underwater near the 231 scrubs in Deku Tree# is", /*french*/"", /*spanish*/"", /*italian*/"#sott'acqua vicino ai cespugli 231# puoi trovare", /*german*/""
+    });
+
+    hintTable[DEKU_TREE_B2F_UNDER_WATER_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"Queenie is cooking some soup with", /*french*/"", /*spanish*/"", /*italian*/"la #regina ha preparato una zuppa# con", /*german*/""},
+                     }, {},
+                       // clear text
+                       Text{"#underwater near the 231 scrubs in Deku Tree# is", /*french*/"", /*spanish*/"", /*italian*/"#sott'acqua vicino ai cespugli 231# puoi trovare", /*german*/""
+    });
+
+    hintTable[DEKU_TREE_B2F_UNDER_WATER_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"Queenie is cooking some soup with", /*french*/"", /*spanish*/"", /*italian*/"la #regina ha preparato una zuppa# con", /*german*/""},
+                     }, {},
+                       // clear text
+                       Text{"#underwater near the 231 scrubs in Deku Tree# is", /*french*/"", /*spanish*/"", /*italian*/"#sott'acqua vicino ai cespugli 231# puoi trovare", /*german*/""
+    });
+
     hintTable[DEKU_TREE_BASEMENT_CHEST] = HintText::Exclude({
                        // obscure text
                        Text{"#webs in the Deku Tree# hide", /*french*/"les #toiles dans l'arbre Mojo# cachent", /*spanish*/"entre #telarañas del Gran Árbol Deku# yace", /*italian*/"una #ragnatela nell'Albero Deku# copre", /*german*/"unterhalb von #Spinnenweben# des Deku-Baumes, |wäre|wären|"},
@@ -175,6 +215,38 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"#beneath a headstone# in Dodongo's Cavern lies", /*french*/"#sous une pierre tombale# dans la caverne Dodongo gît", /*spanish*/"#bajo una lápida# en la Cueva de los Dodongos yace", /*italian*/"#sotto una lapide# nella caverna dei Dodongo |giace|giacciono|", /*german*/"#unter einem Grabstein# in Dodongos Höhle, |wäre|wären|"},
     });
 
+    hintTable[DODONGOS_CAVERN_1F_MINIBOSS_ROOM_HEART_BEHIND_LAVAFALL] = HintText::Exclude({
+                       // obscure text
+                       Text{"#behind a lavafall# lies", /*french*/"", /*spanish*/"", /*italian*/"#dietro una cascata di lava# si trova||no|", /*german*/""},
+                      },{},
+                       // Clear text
+                       Text{"#behind a lavafall next to a miniboss in DC# lies", /*french*/"", /*spanish*/"", /*italian*/"#dietro una cascata di lava# nella caverna dei Dodongo si trova||no|", /*german*/""}
+                         );
+
+   hintTable[DODONGOS_CAVERN_2F_BLADE_TRAPS_ROOM_HEART_BEHIND_BLOCK] = HintText::Exclude({
+                       // obscure text
+                       Text{"some blade traps hid #behind a block#", /*french*/"", /*spanish*/"", /*italian*/"dietro un #blocco in mezzo a trappole taglienti# si trova||no|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"close to some blade traps #in DC behind a pull block #is", /*french*/"", /*spanish*/"", /*italian*/"dietro un #blocco in mezzo a trappole taglienti# nella caverna dei Dodongo puoi trovare", /*german*/""}
+                      );
+
+  hintTable[DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1] = HintText::Exclude({
+                       // obscure text
+                        Text{"on #a pillar overlooking some lava islands# lays", /*french*/"", /*spanish*/"", /*italian*/"sopra un #pilastro roccioso presso una cascata di lava# si trova||no|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"on #a pillar overlooking a miniboss room in DC# lays", /*french*/"", /*spanish*/"", /*italian*/"sopra un #pilastro roccioso nella stanza dei miniboss# della caverna dei Dodongo si trova||no|", /*german*/""}
+                      );
+
+  hintTable[DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2] = HintText::Exclude({
+                         // obscure text
+                        Text{"on #a pillar overlooking some lava islands# lays", /*french*/"", /*spanish*/"", /*italian*/"sopra un #pilastro roccioso presso una cascata di lava# si trova||no|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"on #a pillar overlooking a miniboss room in DC# lays", /*french*/"", /*spanish*/"", /*italian*/"sopra un #pilastro roccioso nella stanza dei miniboss# della caverna dei Dodongo si trova||no|", /*german*/""}
+                      );
+
     hintTable[DODONGOS_CAVERN_KING_DODONGO_HEART] = HintText::Exclude({
                        // obscure text
                        Text{"the #Infernal Dinosaur# holds", /*french*/"le #dinosaure infernal# possède", /*spanish*/"el #dinosaurio infernal# porta", /*italian*/"il #dinosauro degli inferi# possiede", /*german*/"nahe dem #Infernosaurus#, |wäre|wären|"},
@@ -205,7 +277,7 @@ void HintTable_Init_Exclude_Dungeon() {
 
     hintTable[DODONGOS_CAVERN_GS_SIDE_ROOM_NEAR_LOWER_LIZALFOS] = HintText::Exclude({
                        // obscure text
-                       Text{"a #spider among bats# in Dodongo's Cavern holds", /*french*/"une #Skulltula entourée de Saigneurs dans la caverne Dodongo# a", /*spanish*/"una #Skulltula rodeada de murciélagos# de la Cueva de los Dodongos otorga", /*italian*/"un #ragno in mezzo ai pipistrelli# nella caverna dei Dodongo nasconde", /*german*/"in einer, #von Fledermäusen umgebenen Spinne# in Dodongos Höhle, |wäre|wären|"},
+                       Text{"a #spider among bats# in Dodongo's Cavern holds", /*french*/"une #Skulltula entourée de chauve-souris dans la caverne Dodongo# a", /*spanish*/"una #Skulltula rodeada de murciélagos# de la Cueva de los Dodongos otorga", /*italian*/"un #ragno in mezzo ai pipistrelli# nella caverna dei Dodongo nasconde", /*german*/"in einer, #von Fledermäusen umgebenen Spinne# in Dodongos Höhle, |wäre|wären|"},
     });
 
     hintTable[DODONGOS_CAVERN_MQ_GS_SCRUB_ROOM] = HintText::Exclude({
@@ -338,42 +410,42 @@ void HintTable_Init_Exclude_Dungeon() {
 
     hintTable[JABU_JABUS_BELLY_MQ_BOOMERANG_ROOM_SMALL_CHEST] = HintText::Exclude({
                        // obscure text
-                       Text{"a school of #stingers swallowed by a deity# guard", /*french*/"les #raies avallées par le gardien# protègent", /*spanish*/"unos #stingers engullidos por cierta deidad# guardan", /*italian*/"una divinità ha inghiottito #un banco di trigoni volanti# con", /*german*/"nahe eines #verschluckten Fischschwarms#, |wäre|wären|"},
+                       Text{"a school of #stingers swallowed by a deity# guard", /*french*/"les #raies avalées par le gardien# protègent", /*spanish*/"unos #stingers engullidos por cierta deidad# guardan", /*italian*/"una divinità ha inghiottito #un banco di trigoni volanti# con", /*german*/"nahe eines #verschluckten Fischschwarms#, |wäre|wären|"},
                      }, {},
                        // clear text
-                       Text{"a school of #stingers swallowed by Jabu-Jabu# guard", /*french*/"les #raies avallées par Jabu-Jabu# protègent", /*spanish*/"unos #stingers engullidos por Jabu-Jabu# guardan", /*italian*/"#un banco di trigoni volanti# nella pancia di Jabu Jabu protegge", /*german*/"nahe #Fischen in Jabu-Jabus Bauch#, |wäre|wären|"}
+                       Text{"a school of #stingers swallowed by Jabu-Jabu# guard", /*french*/"les #mantas avalées par Jabu-Jabu# protègent", /*spanish*/"unos #stingers engullidos por Jabu-Jabu# guardan", /*italian*/"#un banco di trigoni volanti# nella pancia di Jabu Jabu protegge", /*german*/"nahe #Fischen in Jabu-Jabus Bauch#, |wäre|wären|"}
     );
 
     hintTable[JABU_JABUS_BELLY_MQ_BOOMERANG_CHEST] = HintText::Exclude({
                        // obscure text
-                       Text{"a school of #stingers swallowed by a deity# guard", /*french*/"les #raies avallées par le gardien# protègent", /*spanish*/"unos #stingers engullidos por cierta deidad# guardan", /*italian*/"una divinità ha inghiottito #un banco di trigoni volanti# con", /*german*/"nahe eines #verschluckten Fischschwarms#, |wäre|wären|"},
+                       Text{"a school of #stingers swallowed by a deity# guard", /*french*/"les #raies avalées par le gardien# protègent", /*spanish*/"unos #stingers engullidos por cierta deidad# guardan", /*italian*/"una divinità ha inghiottito #un banco di trigoni volanti# con", /*german*/"nahe eines #verschluckten Fischschwarms#, |wäre|wären|"},
                      }, {},
                        // clear text
-                       Text{"a school of #stingers swallowed by Jabu-Jabu# guard", /*french*/"les #raies avallées par Jabu-Jabu# protègent", /*spanish*/"unos #stingers engullidos por Jabu-Jabu# guardan", /*italian*/"#un banco di trigoni volanti# nella pancia di Jabu Jabu protegge", /*german*/"nahe #Fischen in Jabu-Jabus Bauch#, |wäre|wären|"}
+                       Text{"a school of #stingers swallowed by Jabu-Jabu# guard", /*french*/"les #mantas avalées par Jabu-Jabu# protègent", /*spanish*/"unos #stingers engullidos por Jabu-Jabu# guardan", /*italian*/"#un banco di trigoni volanti# nella pancia di Jabu Jabu protegge", /*german*/"nahe #Fischen in Jabu-Jabus Bauch#, |wäre|wären|"}
     );
 
     hintTable[JABU_JABUS_BELLY_MQ_NEAR_COW_BOTTOM_GREEN_RUPEE] = HintText::Exclude({
                        // obscure text
-                       Text{"#deep in belly juice near a steak# you'll find", /*french*/"#deep in belly juice near a steak# you'll find", /*spanish*/"#deep in belly juice near a steak# you'll find", /*italian*/"#in profondità nei succhi gastrici che digeriscono una bistecca# troverai", /*german*/"#deep in belly juice near a steak# you'll find"},
+                       Text{"#deep in belly juice near a steak# you'll find", /*french*/"#au fond d'un lac gastrique contenant du steak# gît", /*spanish*/"#deep in belly juice near a steak# you'll find", /*italian*/"#in profondità nei succhi gastrici che digeriscono una bistecca# troverai", /*german*/"#deep in belly juice near a steak# you'll find"},
                      }, {},
                        // clear text
-                       Text{"#on the bottom of water in Jabu's Belly near a cow# is", /*french*/"#on the bottom of water in Jabu's Belly near a cow# is", /*spanish*/"#on the bottom of water in Jabu's Belly near a cow# is", /*italian*/"#nella pancia di Jabu Jabu, sul fondo dell'acqua in cui è immersa una mucca#, troverai", /*german*/"#on the bottom of water in Jabu's Belly near a cow# is"}
+                       Text{"#on the bottom of water in Jabu's Belly near a cow# is", /*french*/"#au fond de l'eau du ventre de Jabu-Jabu où nage une vache# gît", /*spanish*/"#on the bottom of water in Jabu's Belly near a cow# is", /*italian*/"#nella pancia di Jabu Jabu, sul fondo dell'acqua in cui è immersa una mucca#, troverai", /*german*/"#on the bottom of water in Jabu's Belly near a cow# is"}
     );
 
     hintTable[JABU_JABUS_BELLY_MQ_NEAR_COW_MIDDLE_GREEN_RUPEE] = HintText::Exclude({
                        // obscure text
-                       Text{"#halfway in belly juice near a steak# you'll find", /*french*/"#halfway in belly juice near a steak# you'll find", /*spanish*/"#halfway in belly juice near a steak# you'll find", /*italian*/"#a mollo nei succhi gastrici che digeriscono una bistecca# troverai", /*german*/"#halfway in belly juice near a steak# you'll find"},
+                       Text{"#halfway in belly juice near a steak# you'll find", /*french*/"#à mi-profondeur d'un lac gastrique contenant du steak# gît", /*spanish*/"#halfway in belly juice near a steak# you'll find", /*italian*/"#a mollo nei succhi gastrici che digeriscono una bistecca# troverai", /*german*/"#halfway in belly juice near a steak# you'll find"},
                      }, {},
                        // clear text
-                       Text{"#in the middle of water in Jabu's Belly near a cow# is", /*french*/"#in the middle of water in Jabu's Belly near a cow# is", /*spanish*/"#in the middle of water in Jabu's Belly near a cow# is", /*italian*/"#nella pancia di Jabu Jabu, in mezzo all'acqua in cui è immersa una mucca#, troverai", /*german*/"#in the middle of water in Jabu's Belly near a cow# is"}
+                       Text{"#in the middle of water in Jabu's Belly near a cow# is", /*french*/"#à mi-profondeur de l'eau du ventre de Jabu-Jabu où nage une vache# gît", /*spanish*/"#in the middle of water in Jabu's Belly near a cow# is", /*italian*/"#nella pancia di Jabu Jabu, in mezzo all'acqua in cui è immersa una mucca#, troverai", /*german*/"#in the middle of water in Jabu's Belly near a cow# is"}
     );
 
     hintTable[JABU_JABUS_BELLY_MQ_NEAR_COW_TOP_GREEN_RUPEE] = HintText::Exclude({
                        // obscure text
-                       Text{"#almost floating in belly juice near a steak# you'll find", /*french*/"#almost floating in belly juice near a steak# you'll find", /*spanish*/"#almost floating in belly juice near a steak# you'll find", /*italian*/"#quasi a galla nei succhi gastrici che digeriscono una bistecca# troverai", /*german*/"#almost floating in belly juice near a steak# you'll find"},
+                       Text{"#almost floating in belly juice near a steak# you'll find", /*french*/"#vers la surface d'un lac gastrique contenant du steak# gît", /*spanish*/"#almost floating in belly juice near a steak# you'll find", /*italian*/"#quasi a galla nei succhi gastrici che digeriscono una bistecca# troverai", /*german*/"#almost floating in belly juice near a steak# you'll find"},
                      }, {},
                        // clear text
-                       Text{"#near the top of water in Jabu's Belly near a cow# is", /*french*/"#near the top of water in Jabu's Belly near a cow# is", /*spanish*/"#near the top of water in Jabu's Belly near a cow# is", /*italian*/"#nella pancia di Jabu Jabu, vicino al pelo dell'acqua in cui è immersa una mucca#, troverai", /*german*/"#near the top of water in Jabu's Belly near a cow# is"}
+                       Text{"#near the top of water in Jabu's Belly near a cow# is", /*french*/"vers la surface de l'eau du ventre de Jabu-Jabu où nage une vache# gît", /*spanish*/"#near the top of water in Jabu's Belly near a cow# is", /*italian*/"#nella pancia di Jabu Jabu, vicino al pelo dell'acqua in cui è immersa una mucca#, troverai", /*german*/"#near the top of water in Jabu's Belly near a cow# is"}
     );
 
     hintTable[JABU_JABUS_BELLY_BARINADE_HEART] = HintText::Exclude({
@@ -503,6 +575,39 @@ void HintTable_Init_Exclude_Dungeon() {
                        // obscure text
                        Text{"#revolving walls# in the Forest Temple conceal", /*french*/"des #murs rotatifs dans la forêt# recèlent", /*spanish*/"las #paredes giratorias# del Templo del Bosque conceden", /*italian*/"#muri rotanti# nel Santuario della Foresta nascondono", /*german*/"nahe #drehbarer Wände# des Waldtempels, |wäre|wären|"},
     });
+
+    hintTable[FOREST_TEMPLE_WELL_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #sunken heart deep in the woods# is", /*french*/"", /*spanish*/"", /*italian*/"in un #lungo corridoio sommerso# puoi trovare", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in the sewer of the Forest Temple# is", /*french*/"", /*spanish*/"", /*italian*/"nel #corridoio sommerso# del Santuario della Foresta puoi trovare", /*german*/""}
+   );
+
+   hintTable[FOREST_TEMPLE_WELL_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #sunken heart deep in the woods# is", /*french*/"", /*spanish*/"", /*italian*/"in un #lungo corridoio sommerso# puoi trovare", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in the sewer of the Forest Temple# is", /*french*/"", /*spanish*/"", /*italian*/"nel #corridoio sommerso# del Santuario della Foresta puoi trovare", /*german*/""}
+   );
+
+   hintTable[FOREST_TEMPLE_LEVEL_ISLAND_RIDGE_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #heart atop a ruin# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore sopra delle rovine# è diventato", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore sopra delle rovine# nel Santuario della Foresta è diventato", /*german*/""}
+   );
+
+   hintTable[FOREST_TEMPLE_LEVEL_ISLAND_RIDGE_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #heart atop a ruin# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore sopra delle rovine# è diventato", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore sopra delle rovine# nel Santuario della Foresta è diventato", /*german*/""}
+   );
+
 
     hintTable[FOREST_TEMPLE_MQ_FIRST_ROOM_CHEST] = HintText::Exclude({
                        // obscure text
@@ -694,6 +799,78 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"a #Goron atop the Fire Temple# holds", /*french*/"le #Goron au sommet du temple du feu# a", /*spanish*/"un #goron en lo alto del Templo del Fuego# guarda", /*italian*/"un #Goron in cima al Santuario del Fuoco# possiede", /*german*/"nahe eines #Goronen, im oberen Teil des Feuertempels#, |wäre|wären|"},
     });
 
+    hintTable[FIRE_TEMPLE_PILLAR_ROOM_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"#some keese in a sauna# guard", /*french*/"", /*spanish*/"", /*italian*/"dei #pipistrelli in una sauna# difendono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #next to the pushblock lift in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #vicino al blocco ascensore# del Santuario del Fuoco è diventato", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_PILLAR_ROOM_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"#some keese in a sauna# guard", /*french*/"", /*spanish*/"", /*italian*/"dei #pipistrelli in una sauna# difendono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #next to the pushblock lift in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #vicino al blocco ascensore# del Santuario del Fuoco è diventato", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_PILLAR_ROOM_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"#some keese in a sauna# guard", /*french*/"", /*spanish*/"", /*italian*/"dei #pipistrelli in una sauna# difendono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #next to the pushblock lift in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #vicino al blocco ascensore# del Santuario del Fuoco è diventato", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_EAST_CENTRAL_ROOM_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"on #an edge overlooking a big drop# lies", /*french*/"", /*spanish*/"", /*italian*/"sul bordo di un #pavimento crollato# giac|e|ciono|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #in the east central room in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore nella #stanza centrale del lato est# nel Santuario del Fuoco è diventato", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_EAST_CENTRAL_ROOM_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"on #an edge overlooking a big drop# lies", /*french*/"", /*spanish*/"", /*italian*/"sul bordo di un #pavimento crollato# giac|e|ciono|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #in the east central room in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore nella #stanza centrale del lato est# nel Santuario del Fuoco è diventato", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_EAST_CENTRAL_ROOM_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"on #an edge overlooking a big drop# lies", /*french*/"", /*spanish*/"", /*italian*/"sul bordo di un #pavimento crollato# giac|e|ciono|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #in the east central room in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore nella #stanza centrale del lato est# nel Santuario del Fuoco è diventato", /*german*/""}
+   );
+
+  hintTable[FIRE_TEMPLE_FIRE_WALL_CHASE_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"on #a sometimes roasted pillar# rests", /*french*/"", /*spanish*/"", /*italian*/"su un certo pilastro a volte puoi veder #arrostire#", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #on a pillar in the fire wall chase room in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore su un pilastro nella stanza del #muro di fuoco# nel Santuario del Fuoco", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_FIRE_WALL_CHASE_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"on #a sometimes roasted pillar# rests", /*french*/"", /*spanish*/"", /*italian*/"su un certo pilastro a volte puoi veder #arrostire#", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #on a pillar in the fire wall chase room in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore su un pilastro nella stanza del #muro di fuoco# nel Santuario del Fuoco", /*german*/""}
+   );
+
+   hintTable[FIRE_TEMPLE_FIRE_WALL_CHASE_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"on #a platform only reachable when hotly chased# you can find", /*french*/"", /*spanish*/"", /*italian*/"dopo essere stati inseguiti da un #muro di fuoco# si |può|possono| raggiungere", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #on the last platform in the fire wall chase room in Fire Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore alla fine della stanza del #muro di fuoco# nel Santuario del Fuoco è diventato", /*german*/""}
+   );
+
     hintTable[FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST] = HintText::Exclude({
                        // obscure text
                        Text{"#near a dragon# is", /*french*/"#près d'un dragon# gît", /*spanish*/"#cerca de un dragón# yace", /*italian*/"#vicino a un drago# un forziere contiene", /*german*/"in der Nähe eines #Drachens#, |wäre|wären|"},
@@ -816,7 +993,7 @@ void HintTable_Init_Exclude_Dungeon() {
     ---------------------------*/
     hintTable[WATER_TEMPLE_MAP_CHEST] = HintText::Exclude({
                        // obscure text
-                       Text{"#rolling spikes# in the Water Temple surround", /*french*/"des #Spikes# dans le temple de l'eau entourent", /*spanish*/"unas #rodantes púas# del Templo del Agua guardan", /*italian*/"dei #ricci di ferro# nel Santuario dell'Acqua proteggono", /*german*/"nahe #rollender Stacheln# des Wassertempels, |wäre|wären|"},
+                       Text{"#rolling spikes# in the Water Temple surround", /*french*/"des #Hérissons métalliques# dans le temple de l'eau entourent", /*spanish*/"unas #rodantes púas# del Templo del Agua guardan", /*European*/"#rolling spikes# in the Water Temple surround", /*french*/"des #Spikes# dans le temple de l'eau entourent", /*spanish*/"unas #rodantes púas# del Templo del Agua guardan", /*italian*/"dei #ricci di ferro# nel Santuario dell'Acqua proteggono", /*german*/"nahe #rollender Stacheln# des Wassertempels, |wäre|wären|"},
     });
 
     hintTable[WATER_TEMPLE_COMPASS_CHEST] = HintText::Exclude({
@@ -855,8 +1032,40 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"a #dark reflection# of yourself guards", /*french*/"son #propre reflet# cache",    /*spanish*/"el #oscuro reflejo de ti mismo# guarda", /*italian*/"la #tua ombra# difende",         /*german*/"nahe eines #dunklen Spiegelbilds#, |wäre|wären|"},
                      }, {},
                        // clear text
-                       Text{"#Dark @# guards", /*french*/"l'#Ombre de @# protège", /*spanish*/"#@ Oscuro# guarda", /*italian*/"#@ oscuro# protegge", /*german*/"nahe #dem schwarzen @#, |wäre|wären|"}
+                       Text{"#Dark @# guards", /*french*/"#@ noir# protège", /*spanish*/"#@ Oscuro# guarda", /*italian*/"#@ oscuro# protegge", /*german*/"nahe #dem schwarzen @#, |wäre|wären|"}
     );
+
+    hintTable[WATER_TEMPLE_RIVER_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"among #Dark @'s turds# has sunk", /*french*/"", /*spanish*/"", /*italian*/"#@ Oscuro# ha gettato via", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"in #the river in Water Temple# is", /*french*/"", /*spanish*/"", /*italian*/"nel #fiume# del Santuario dell'Acqua si trova||no|", /*german*/""}
+   );
+
+   hintTable[WATER_TEMPLE_RIVER_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"among #Dark @'s turds# has sunk", /*french*/"", /*spanish*/"", /*italian*/"#@ Oscuro# ha gettato via", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"in #the river in Water Temple# is", /*french*/"", /*spanish*/"", /*italian*/"nel #fiume# del Santuario dell'Acqua si trova||no|", /*german*/""}
+   );
+
+   hintTable[WATER_TEMPLE_RIVER_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"among #Dark @'s turds# has sunk", /*french*/"", /*spanish*/"", /*italian*/"#@ Oscuro# ha gettato via", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"in #the river in Water Temple# is", /*french*/"", /*spanish*/"", /*italian*/"nel #fiume# del Santuario dell'Acqua si trova||no|", /*german*/""}
+   );
+
+   hintTable[WATER_TEMPLE_RIVER_HEART_4] = HintText::Exclude({
+                       // obscure text
+                       Text{"among #Dark @'s turds# has sunk", /*french*/"", /*spanish*/"", /*italian*/"#@ Oscuro# ha gettato via", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"in #the river in Water Temple# is", /*french*/"", /*spanish*/"", /*italian*/"nel #fiume# del Santuario dell'Acqua si trova||no|", /*german*/""}
+   );
 
     hintTable[WATER_TEMPLE_MQ_CENTRAL_PILLAR_CHEST] = HintText::Exclude({
                        // obscure text
@@ -1017,6 +1226,22 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"those who #show the light above the Colossus# find", /*french*/"le #soleil au sommet du colosse# révèle", /*spanish*/"aquellos que #iluminen en lo alto del Coloso# encontrarán", /*italian*/"#chi sa riflettere bene# in cima al colosso può trovare", /*german*/"nahe einer #lichtbedürftigen Sonne, an der Spitze des Kolosses#, |wäre|wären|"},
     });
 
+    hintTable[SPIRIT_TEMPLE_ADULT_CLIMB_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"some #feisty rock climbing Beamos# hide", /*french*/"", /*spanish*/"", /*italian*/"dei #Laseros scalatori# proteggono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart on a platform near a climbing wall in Spirit Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore su una piattaforma vicino a una #parete scalabile# nel Santuario dello Spirito è diventato", /*german*/""}
+   );
+
+    hintTable[SPIRIT_TEMPLE_ADULT_CLIMB_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"some #feisty rock climbing Beamos# hide", /*french*/"", /*spanish*/"", /*italian*/"dei #Laseros scalatori# proteggono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart on a platform near a climbing wall in Spirit Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore su una piattaforma vicino a una #parete scalabile# nel Santuario dello Spirito è diventato", /*german*/""}
+    );
+
     hintTable[SPIRIT_TEMPLE_MQ_ENTRANCE_FRONT_LEFT_CHEST] = HintText::Exclude({
                        // obscure text
                        Text{"#lying unguarded# in the Spirit Temple is", /*french*/"dans #l'entrée du colosse# se trouve", /*spanish*/"en la #entrada del Templo del Espíritu# yace", /*italian*/"un forziere #incustodito# all'ingresso del Santuario dello Spirito contiene", /*german*/"in einer #unbewachten Truhe# des Geistertempels, |wäre|wären|"},
@@ -1112,7 +1337,7 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"the #Sorceress Sisters# hold", /*french*/"#les sorcières jumelles# possède", /*spanish*/"las #hermanas hechiceras# portan", /*italian*/"le #sorelle megere# possiedono", /*german*/"nahe der #höllischen Hexenarmada#, |wäre|wären|"},
                      }, {},
                        // clear text
-                       Text{"#Twinrova# holds", /*french*/"#Twinrova# possède", /*spanish*/"#Birova# porta", /*italian*/"#Duerova# possiede", /*german*/"nahe #Twinrova#, |wäre|wären|"}
+                       Text{"#Twinrova# holds", /*french*/"#Birova# possède", /*spanish*/"#Birova# porta", /*European*/"#Twinrova# holds", /*french*/"#Twinrova# possède", /*spanish*/"#Birova# porta", /*italian*/"#Duerova# possiede", /*german*/"nahe #Twinrova#, |wäre|wären|"}
     );
 
     hintTable[SPIRIT_TEMPLE_GS_HALL_AFTER_SUN_BLOCK_ROOM] = HintText::Exclude({
@@ -1173,7 +1398,7 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"a #nether dweller in the Shadow Temple# holds", /*french*/"le #spectre du temple de l'ombre# a", /*spanish*/"un #temido morador del Templo de las Sombras# guarda", /*italian*/"un #tipo manesco nel Santuario dell'Ombra# possiede", /*german*/"nahe dem #unterirdischen Bewohner des Schattentempels#, |wäre|wären|"},
                      }, {},
                        // clear text
-                       Text{"#Dead Hand in the Shadow Temple# holds", /*french*/"le #Poigneur dans le temple de l'ombre# cache", /*spanish*/"la #Mano Muerta del Templo de las Sombras# guarda", /*italian*/"lo #Smaniosso nel Santuario dell'Ombra# possiede", /*german*/"nahe dem #Hirnsauger des Schattentempels#, |wäre|wären|"}
+                       Text{"#Dead Hand in the Shadow Temple# holds", /*french*/"le #Main mortelle dans le temple de l'ombre# cache", /*spanish*/"la #Mano Muerta del Templo de las Sombras# guarda", /*European*/"#Dead Hand in the Shadow Temple# holds", /*french*/"le #Poigneur dans le temple de l'ombre# cache", /*spanish*/"la #Mano Muerta del Templo de las Sombras# guarda", /*italian*/"lo #Smaniosso nel Santuario dell'Ombra# possiede", /*german*/"nahe dem #Hirnsauger des Schattentempels#, |wäre|wären|"}
     );
 
     hintTable[SHADOW_TEMPLE_COMPASS_CHEST] = HintText::Exclude({
@@ -1245,6 +1470,62 @@ void HintTable_Init_Exclude_Dungeon() {
                        // obscure text
                        Text{"#inside a burning skull# lies", /*french*/"#dans un crâne enflammé# gît", /*spanish*/"en el #interior de una calavera en llamas# aguarda", /*italian*/"da un #vaso a forma di teschio# |salta|saltano| fuori", /*german*/"#in einem brennenden Schädel#, |wäre|wären|"},
     });
+
+    hintTable[SHADOW_TEMPLE_INVISIBLE_BLADES_SOT_BLOCK_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"hiding from #an invisible beyblade# lies", /*french*/"", /*spanish*/"", /*italian*/"un #Beyblade invisibile# non può raggiungere", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart on a Song of Time block in Shadow Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #sopra un blocco del tempo# nel Santuario dell'Ombra è diventato", /*german*/""}
+   );
+
+   hintTable[SHADOW_TEMPLE_INVISIBLE_BLADES_SOT_BLOCK_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"hiding from #an invisible beyblade# lies", /*french*/"", /*spanish*/"", /*italian*/"un #Beyblade invisibile# non può raggiungere", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart on a Song of Time block in Shadow Temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #sopra un blocco del tempo# nel Santuario dell'Ombra è diventato", /*german*/""}
+   );
+
+   hintTable[SHADOW_TEMPLE_NEAR_SHIP_SCARECROW_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #scarecrow on a cruise vacation# is surrounded by", /*french*/"", /*spanish*/"", /*italian*/"uno spaventapasseri vuole #partire per una crociera# con", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #next to the Scarecrow at the start of the boat journey in Shadow temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #vicino alla nave# del Santuario dell'Ombra è diventato", /*german*/""}
+   );
+
+   hintTable[SHADOW_TEMPLE_NEAR_SHIP_SCARECROW_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #scarecrow on a cruise vacation# is surrounded by", /*french*/"", /*spanish*/"", /*italian*/"uno spaventapasseri vuole #partire per una crociera# con", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #next to the Scarecrow at the start of the boat journey in Shadow temple# is", /*french*/"", /*spanish*/"", /*italian*/"un cuore #vicino alla nave# del Santuario dell'Ombra è diventato", /*german*/""}
+   );
+
+  hintTable[SHADOW_TEMPLE_ACROSS_CAVERN_BROKEN_PILLAR_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"#after a cruise, on a ruin# is hidden", /*french*/"", /*spanish*/"", /*italian*/"#Schettino# può trovare un rudere con sopra", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a heart #on a broken pillar near the Boss entry in Shadow Temple# is", /*french*/"", /*spanish*/"", /*italian*/"il cuore sul #pilastro distrutto vicino al boss# del Santuario dell'Ombra è diventato", /*german*/""}
+   );
+
+  hintTable[SHADOW_TEMPLE_ACROSS_CAVERN_SCARECROW_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #scarecrow overlooking a bottomless pit# is surrounded by", /*french*/"", /*spanish*/"", /*italian*/"uno spaventapasseri osserva un #baratro senza fondo# tenendo con sé", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"on #a platform overlooking the bottomless cavern in Shadow Temple# is", /*french*/"", /*spanish*/"", /*italian*/"su una piattaforma #in alto dopo il viaggio in nave# del Santuario dell'Ombra giac|e|ciono|", /*german*/""}
+   );
+
+  hintTable[SHADOW_TEMPLE_ACROSS_CAVERN_SCARECROW_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #scarecrow overlooking a bottomless pit# is surrounded by", /*french*/"", /*spanish*/"", /*italian*/"uno spaventapasseri osserva un #baratro senza fondo# tenendo con sé", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"on #a platform overlooking the bottomless cavern in Shadow Temple# is", /*french*/"", /*spanish*/"", /*italian*/"su una piattaforma #in alto dopo il viaggio in nave# del Santuario dell'Ombra giac|e|ciono|", /*german*/""}
+   );
 
     hintTable[SHADOW_TEMPLE_MQ_COMPASS_CHEST] = HintText::Exclude({
                        // obscure text
@@ -1472,43 +1753,59 @@ void HintTable_Init_Exclude_Dungeon() {
 
     hintTable[BOTTOM_OF_THE_WELL_CENTER_ROOM_PIT_FALL_BLUE_RUPEE_1] = HintText::Exclude({
                        // obscure text
-                       Text{"falling through #an invisible floor# gives", /*french*/"falling through #an invisible floor# gives", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
+                       Text{"falling through #an invisible floor# gives", /*french*/"tomber à travers #un sol illusoire# donne", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
                      },{},
                        // clear text
-                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"the #rupees on the platform in the center pit of BOTW# hold", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
+                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"un #rubis de la platforme surplombant l'étage inférieur du puits# est", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
     );
 
     hintTable[BOTTOM_OF_THE_WELL_CENTER_ROOM_PIT_FALL_BLUE_RUPEE_2] = HintText::Exclude({
                        // obscure text
-                       Text{"falling through #an invisible floor# gives", /*french*/"falling through #an invisible floor# gives", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
+                       Text{"falling through #an invisible floor# gives", /*french*/"tomber à travers #un sol illusoire# donne", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
                      },{},
                        // clear text
-                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"the #rupees on the platform in the center pit of BOTW# hold", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
+                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"un #rubis de la platforme surplombant l'étage inférieur du puits# est", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
     );
 
     hintTable[BOTTOM_OF_THE_WELL_CENTER_ROOM_PIT_FALL_BLUE_RUPEE_3] = HintText::Exclude({
                        // obscure text
-                       Text{"falling through #an invisible floor# gives", /*french*/"falling through #an invisible floor# gives", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
+                       Text{"falling through #an invisible floor# gives", /*french*/"tomber à travers #un sol illusoire# donne", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
                      },{},
                        // clear text
-                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"the #rupees on the platform in the center pit of BOTW# hold", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
+                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"un #rubis de la platforme surplombant l'étage inférieur du puits# est", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
     );
 
     hintTable[BOTTOM_OF_THE_WELL_CENTER_ROOM_PIT_FALL_BLUE_RUPEE_4] = HintText::Exclude({
                        // obscure text
-                       Text{"falling through #an invisible floor# gives", /*french*/"falling through #an invisible floor# gives", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
+                       Text{"falling through #an invisible floor# gives", /*french*/"tomber à travers #un sol illusoire# donne", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
                      },{},
                        // clear text
-                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"the #rupees on the platform in the center pit of BOTW# hold", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
+                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"un #rubis de la platforme surplombant l'étage inférieur du puits# est", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
     );
 
     hintTable[BOTTOM_OF_THE_WELL_CENTER_ROOM_PIT_FALL_BLUE_RUPEE_5] = HintText::Exclude({
                        // obscure text
-                       Text{"falling through #an invisible floor# gives", /*french*/"falling through #an invisible floor# gives", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
+                       Text{"falling through #an invisible floor# gives", /*french*/"tomber à travers #un sol illusoire# donne", /*spanish*/"falling through #an invisible floor# gives", /*italian*/"cadendo attraverso #un pavimento invisible# puoi ottenere", /*german*/"falling through #an invisible floor# gives"},
                      },{},
                        // clear text
-                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"the #rupees on the platform in the center pit of BOTW# hold", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
+                       Text{"the #rupees on the platform in the center pit of BOTW# hold", /*french*/"un #rubis de la platforme surplombant l'étage inférieur du puits# est", /*spanish*/"the #rupees on the platform in the center pit of BOTW# hold", /*italian*/"#sulla piattaforma centrale nel pozzo# puoi trovare", /*german*/"the #rupees on the platform in the center pit of BOTW# hold"}
     );
+
+    hintTable[BOTTOM_OF_THE_WELL_CLOSED_SARCOPHAGUS_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"under #a stone lid# rests in peace", /*french*/"", /*spanish*/"", /*italian*/"sotto un coperchio di pietra #riposa in pace#", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"in #a coffin in Bottom of the Well# lies", /*french*/"", /*spanish*/"", /*italian*/"in una #bara chiusa# nel fondo del pozzo giac|e|ciono|", /*german*/""}
+   );
+
+   hintTable[BOTTOM_OF_THE_WELL_OPEN_SARCOPHAGUS_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"while raising from the dead a gibdo left", /*french*/"", /*spanish*/"", /*italian*/"dopo #essere risorto#, un ghibdo ha lasciato", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"in #an open coffin in Bottom of the Well# lies", /*french*/"", /*spanish*/"", /*italian*/"in una #bara aperta# nel fondo del pozzo giac|e|ciono|", /*german*/""}
+   );
 
     hintTable[BOTTOM_OF_THE_WELL_MQ_MAP_CHEST] = HintText::Exclude({
                        // obscure text
@@ -1585,35 +1882,59 @@ void HintTable_Init_Exclude_Dungeon() {
 
     hintTable[ICE_CAVERN_RED_ICE_BLUE_RUPEE] = HintText::Exclude({
                        // obscure text
-                       Text{"#some Gatorade will melt#", /*french*/"#some Gatorade will melt#", /*spanish*/"#some Gatorade will melt#", /*italian*/"#un po' di Gatorade può scongelare#", /*german*/"#some Gatorade will melt#"},
+                       Text{"#some Gatorade will melt#", /*french*/"#de la grenadine glacée# contient", /*spanish*/"#some Gatorade will melt#", /*italian*/"#un po' di Gatorade può scongelare#", /*german*/"#some Gatorade will melt#"},
                      },{},
                        // clear text
-                       Text{"melting #the red ice in the first Ice Cavern room# will give", /*french*/"melting #the red ice in the first Ice Cavern room# will give", /*spanish*/"melting #the red ice in the first Ice Cavern room# will give", /*italian*/"il #ghiaccio rosso nella prima stanza della caverna di ghiaccio# contiene", /*german*/"melting #the red ice in the first Ice Cavern room# will give"}
+                       Text{"melting #the red ice in the first Ice Cavern room# will give", /*french*/"#une fonte de glace rouge dans la 1ère pièce de la caverne polaire# libère", /*spanish*/"melting #the red ice in the first Ice Cavern room# will give", /*italian*/"il #ghiaccio rosso nella prima stanza della caverna di ghiaccio# contiene", /*german*/"melting #the red ice in the first Ice Cavern room# will give"}
     );
 
     hintTable[ICE_CAVERN_PUSH_BLOCK_ROOM_RED_RUPEE_1] = HintText::Exclude({
                        // obscure text
-                       Text{"apparently #cold cancels out gravity# on", /*french*/"apparently #cold cancels out gravity# on", /*spanish*/"apparently #cold cancels out gravity# on", /*italian*/"apparentemente #il freddo annulla la forza di gravità# per", /*german*/"apparently #cold cancels out gravity# on"},
+                       Text{"apparently #cold cancels out gravity# on", /*french*/"#le froid semble faire oublier la gravité# à", /*spanish*/"apparently #cold cancels out gravity# on", /*italian*/"apparentemente #il freddo annulla la forza di gravità# per", /*german*/"apparently #cold cancels out gravity# on"},
                      },{},
                        // clear text
-                       Text{"#the rupees floating above the push blocks in Ice Cavern# are", /*french*/"#the rupees floating above the push blocks in Ice Cavern# are", /*spanish*/"#the rupees floating above the push blocks in Ice Cavern# are", /*italian*/"#a mezz'aria nella caverna di ghiaccio# puoi veder fluttuare", /*german*/"#the rupees floating above the push blocks in Ice Cavern# are"}
+                       Text{"#the rupees floating above the push blocks in Ice Cavern# are", /*french*/"#un rubis survolant les blocs glissants de la caverne polaire# est", /*spanish*/"#the rupees floating above the push blocks in Ice Cavern# are", /*italian*/"#a mezz'aria nella caverna di ghiaccio# puoi veder fluttuare", /*german*/"#the rupees floating above the push blocks in Ice Cavern# are"}
     );
 
     hintTable[ICE_CAVERN_PUSH_BLOCK_ROOM_RED_RUPEE_2] = HintText::Exclude({
                        // obscure text
-                       Text{"apparently #cold cancels out gravity# on", /*french*/"apparently #cold cancels out gravity# on", /*spanish*/"apparently #cold cancels out gravity# on", /*italian*/"apparentemente #il freddo annulla la forza di gravità# per", /*german*/"apparently #cold cancels out gravity# on"},
+                       Text{"apparently #cold cancels out gravity# on", /*french*/"#le froid semble faire oublier la gravité# à", /*spanish*/"apparently #cold cancels out gravity# on", /*italian*/"apparentemente #il freddo annulla la forza di gravità# per", /*german*/"apparently #cold cancels out gravity# on"},
                      },{},
                        // clear text
-                       Text{"#the rupees floating above the push blocks in Ice Cavern# are", /*french*/"#the rupees floating above the push blocks in Ice Cavern# are", /*spanish*/"#the rupees floating above the push blocks in Ice Cavern# are", /*italian*/"#a mezz'aria nella caverna di ghiaccio# puoi veder fluttuare", /*german*/"#the rupees floating above the push blocks in Ice Cavern# are"}
+                       Text{"#the rupees floating above the push blocks in Ice Cavern# are", /*french*/"#un rubis survolant les blocs glissants de la caverne polaire# est", /*spanish*/"#the rupees floating above the push blocks in Ice Cavern# are", /*italian*/"#a mezz'aria nella caverna di ghiaccio# puoi veder fluttuare", /*german*/"#the rupees floating above the push blocks in Ice Cavern# are"}
     );
 
     hintTable[ICE_CAVERN_PUSH_BLOCK_ROOM_RED_RUPEE_3] = HintText::Exclude({
                        // obscure text
-                       Text{"apparently #cold cancels out gravity# on", /*french*/"apparently #cold cancels out gravity# on", /*spanish*/"apparently #cold cancels out gravity# on", /*italian*/"apparentemente #il freddo annulla la forza di gravità# per", /*german*/"apparently #cold cancels out gravity# on"},
+                       Text{"apparently #cold cancels out gravity# on", /*french*/"#le froid semble faire oublier la gravité# à", /*spanish*/"apparently #cold cancels out gravity# on", /*italian*/"apparentemente #il freddo annulla la forza di gravità# per", /*german*/"apparently #cold cancels out gravity# on"},
                      },{},
                        // clear text
-                       Text{"#the rupees floating above the push blocks in Ice Cavern# are", /*french*/"#the rupees floating above the push blocks in Ice Cavern# are", /*spanish*/"#the rupees floating above the push blocks in Ice Cavern# are", /*italian*/"#a mezz'aria nella caverna di ghiaccio# puoi veder fluttuare", /*german*/"#the rupees floating above the push blocks in Ice Cavern# are"}
+                       Text{"#the rupees floating above the push blocks in Ice Cavern# are", /*french*/"#un rubis survolant les blocs glissants de la caverne polaire# est", /*spanish*/"#the rupees floating above the push blocks in Ice Cavern# are", /*italian*/"#a mezz'aria nella caverna di ghiaccio# puoi veder fluttuare", /*german*/"#the rupees floating above the push blocks in Ice Cavern# are"}
     );
+
+    hintTable[ICE_CAVERN_MAP_CHEST_ROOM_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #repository for cold hearts# includes", /*french*/"", /*spanish*/"", /*italian*/"saltando da un #ponte frigido# puoi trovare", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"one of #the hearts in Ice Cavern on a platform# is", /*french*/"", /*spanish*/"", /*italian*/"un #cuore su una piattaforma# nella caverna di ghiaccio", /*german*/""}
+   );
+
+   hintTable[ICE_CAVERN_MAP_CHEST_ROOM_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #repository for cold hearts# includes", /*french*/"", /*spanish*/"", /*italian*/"saltando da un #ponte frigido# puoi trovare", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"one of #the hearts in Ice Cavern on a platform# is", /*french*/"", /*spanish*/"", /*italian*/"un #cuore su una piattaforma# nella caverna di ghiaccio", /*german*/""}
+   );
+
+   hintTable[ICE_CAVERN_MAP_CHEST_ROOM_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #repository for cold hearts# includes", /*french*/"", /*spanish*/"", /*italian*/"saltando da un #ponte frigido# puoi trovare", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"one of #the hearts in Ice Cavern on a platform# is", /*french*/"", /*spanish*/"", /*italian*/"un #cuore su una piattaforma# nella caverna di ghiaccio", /*german*/""}
+   );
 
     hintTable[ICE_CAVERN_MQ_IRON_BOOTS_CHEST] = HintText::Exclude({
                        // obscure text
@@ -1767,6 +2088,22 @@ void HintTable_Init_Exclude_Dungeon() {
                        // obscure text
                        Text{"the #Song of Time# in the Gerudo Training Grounds leads to", /*french*/"le #chant du temps# révèle dans le gymnase Gerudo", /*spanish*/"la #Canción del Tiempo# en el Centro de Instrucción Gerudo conduce a", /*italian*/"la #Canzone del tempo# nella zona di addestramento Gerudo apre la via per", /*german*/"nach der #Hymne der Zeit# beim Training der Diebe, |wäre|wären|"},
     });
+
+    hintTable[GERUDO_TRAINING_GROUNDS_BEAMOS_ROOM_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"#dinos, fire and lasers# protect", /*french*/"", /*spanish*/"", /*italian*/"delle #subdole fiamme in una stanza ottagonale# difendono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"#behind the walls of fire in the Beamos room of GTG# lies", /*french*/"", /*spanish*/"", /*italian*/"dietro i #muri di fuoco della stanza del Laseros# nella zona di addestramento Gerudo puoi trovare", /*german*/""}
+   );
+
+   hintTable[GERUDO_TRAINING_GROUNDS_BEAMOS_ROOM_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"#dinos, fire and lasers# protect", /*french*/"", /*spanish*/"", /*italian*/"delle #subdole fiamme in una stanza ottagonale# difendono", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"#behind the walls of fire in the Beamos room of GTG# lies", /*french*/"", /*spanish*/"", /*italian*/"dietro i #muri di fuoco della stanza del Laseros# nella zona di addestramento Gerudo puoi trovare", /*german*/""}
+   );
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_LOBBY_RIGHT_CHEST] = HintText::Exclude({
                        // obscure text
@@ -1925,6 +2262,46 @@ void HintTable_Init_Exclude_Dungeon() {
                        // obscure text
                        Text{"#music in the test of radiance# reveals", /*french*/"la #musique dans l'épreuve du ciel# révèle", /*spanish*/"la #música en la prueba del resplandor# revela", /*italian*/"#musica nella prova dello splendore# cela", /*german*/"nahe #Musik in der Prüfung der Strahlen#, |wäre|wären|"},
     });
+
+    hintTable[GANONS_CASTLE_FIRE_TRIAL_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"#Ganon's sauna# hides", /*french*/"", /*spanish*/"", /*italian*/"la #sauna di Ganondorf# nasconde", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"the #heart in Fire Trial# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"il #cuore nella Prova del Fuoco# è diventato", /*german*/""}
+    );
+
+    hintTable[GANONS_CASTLE_SPIRIT_TRIAL_HEART] = HintText::Exclude({
+                       // obscure text
+                       Text{"Ganon placed #some spiky slidy bois# to guard", /*french*/"", /*spanish*/"", /*italian*/"il #Roomba di Ganondorf# passa ripetutamente sopra", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"the #heart in Spirit Trial# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"il #cuore nella Prova dello Spirito# è diventato", /*german*/""}
+    );
+
+    hintTable[GANONS_CASTLE_SHADOW_TRIAL_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"floating #in a shadowy void# you can find", /*french*/"", /*spanish*/"", /*italian*/"sopra un #baratro violaceo# fluttua||no|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in Shadow Trial# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore nella Prova dell'Ombra# è diventato", /*german*/""}
+    );
+
+    hintTable[GANONS_CASTLE_SHADOW_TRIAL_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"floating #in a shadowy void# you can find", /*french*/"", /*spanish*/"", /*italian*/"sopra un #baratro violaceo# fluttua||no|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in Shadow Trial# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore nella Prova dell'Ombra# è diventato", /*german*/""}
+    );
+
+    hintTable[GANONS_CASTLE_SHADOW_TRIAL_HEART_3] = HintText::Exclude({
+                       // obscure text
+                       Text{"floating #in a shadowy void# you can find", /*french*/"", /*spanish*/"", /*italian*/"sopra un #baratro violaceo# fluttua||no|", /*german*/""},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in Shadow Trial# is replaced by", /*french*/"", /*spanish*/"", /*italian*/"un #cuore nella Prova dell'Ombra# è diventato", /*german*/""}
+    );
 
     hintTable[GANONS_CASTLE_MQ_WATER_TRIAL_CHEST] = HintText::Exclude({
                        // obscure text

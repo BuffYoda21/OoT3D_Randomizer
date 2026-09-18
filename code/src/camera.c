@@ -5,7 +5,7 @@
 #include "savefile.h"
 #include "settings.h"
 
-#define GyroDrawHUDIcon (*(u8*)GAME_ADDR(0x4FC648))
+extern u8 GyroDrawHUDIcon;
 s16 pitch = 0, yaw = 0;
 f32 dist = 0;
 
@@ -137,8 +137,7 @@ void Camera_UpdateDistortion(Camera* camera) {
 
 s32 Camera_UpdateHotRoom(Camera* camera) {
     camera->distortionFlags &= 0xFFFE;
-    // Parts of RoomContext, bool value seems new to 3D
-    if (camera->globalCtx->unk_4C31[1] == 3 || camera->globalCtx->unk_4C31[6]) {
+    if (camera->globalCtx->roomCtx.curRoom.environmentType == 3 || camera->globalCtx->roomCtx.curRoom.visuallyHot) {
         camera->distortionFlags |= 1;
     }
     return 1;
@@ -204,8 +203,9 @@ void Camera_FreeCamUpdate(Vec3s* out, Camera* camera) {
         if (rInputCtx.cStick.dx * rInputCtx.cStick.dx + rInputCtx.cStick.dy * rInputCtx.cStick.dy > 900) {
             // Invert X input in mirror world and both axes depending on settings
             yaw -= rInputCtx.cStick.dx * speed *
-                   ((gSaveContext.masterQuestFlag ^ (gExtSaveData.option_FreeCamControl >> 1)) ? -1 : 1);
-            pitch = Clamp(pitch + rInputCtx.cStick.dy * speed * ((gExtSaveData.option_FreeCamControl & 1) ? -1 : 1));
+                   ((gSaveContext.masterQuestFlag ^ (gExtSaveData.options[OPTION_FREECAMCONTROL] >> 1)) ? -1 : 1);
+            pitch = Clamp(pitch +
+                          rInputCtx.cStick.dy * speed * ((gExtSaveData.options[OPTION_FREECAMCONTROL] & 1) ? -1 : 1));
         }
 
         // Set intended camera position
@@ -254,6 +254,7 @@ void Camera_FreeCamUpdate(Vec3s* out, Camera* camera) {
             if (newSetting != camera->setting) {
                 camera->prevSetting = camera->setting;
                 camera->setting     = newSetting;
+                camera->mode        = 0; // Reset to CAM_MODE_NORMAL so won't read data OoB on switch back
             }
         }
     }

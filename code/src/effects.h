@@ -3,6 +3,8 @@
 
 #include "z3D/z3D.h"
 
+void Effects_Init(void);
+void Effects_UpdateSwordTrailDuration(void);
 void EffectSs_ClearAllWithMissingObject(void);
 
 #endif //_EFFECTS_H_
