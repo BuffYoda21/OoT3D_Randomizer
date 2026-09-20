@@ -475,10 +475,7 @@ void UpdateArchipelagoMultiworldMenu(u32 kDown) {
     ClearDescription();
     if (kDown & KEY_A) {
         switch (currentMenu->menuIdx) {
-            case 0: // Slot Name
-                apSlotName = GetInput("Slot Name");
-                break;
-            case 1: // Connect and Generate
+            case 0: // Connect and Generate
                 consoleSelect(&topScreen);
                 // clear any potential message
                 ClearDescription();
@@ -742,7 +739,7 @@ void PrintResetToDefaultsMenu() {
 void PrintArchipelagoMultiworldMenu() {
     consoleSelect(&bottomScreen);
 
-    std::vector<std::string> apOptions = { "Slot Name: " + apSlotName, "Connect and Generate" };
+    std::vector<std::string> apOptions = { "Connect and Generate" };
 
     for (u8 i = 0; i < apOptions.size(); i++) {
 

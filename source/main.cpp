@@ -7,6 +7,7 @@
 #include "location_access.hpp"
 #include "music.hpp"
 #include "enemizer.hpp"
+#include "archipelago.hpp"
 
 #define TICKS_PER_SEC 268123480.0
 
@@ -41,6 +42,14 @@ int main() {
             }
         } else {
             initialHoldTime = svcGetSystemTick();
+        }
+
+        // poll for AP data
+        if (g_apHeader.listening == 1) {
+            if (kDown & KEY_B)
+                CancelArchipelago();
+            else
+                PollArchipelagoPayload();
         }
 
         // send inputs off to the menu
