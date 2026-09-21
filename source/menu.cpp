@@ -476,9 +476,12 @@ void UpdateArchipelagoMultiworldMenu(u32 kDown) {
     if (kDown & KEY_A) {
         switch (currentMenu->menuIdx) {
             case 0: // Connect and Generate
+                // clear both screens
+                consoleSelect(&bottomScreen);
+                consoleClear();
                 consoleSelect(&topScreen);
-                // clear any potential message
-                ClearDescription();
+                consoleClear();
+
                 ConnectAndGenerate();
                 break;
         }

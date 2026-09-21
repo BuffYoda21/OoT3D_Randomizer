@@ -16,6 +16,6 @@ struct APHeader {
 
 extern APHeader g_apHeader;
 
-bool ConnectAndGenerate();
+void ConnectAndGenerate();
 void CancelArchipelago();
 void PollArchipelagoPayload();

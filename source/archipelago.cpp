@@ -2,18 +2,13 @@
 #include <cstring>
 #include "menu.hpp"
 
-// Last checked commit e6f0673
-// address: 0x510000
+// last checked address: 0x50f000
 // Still need a better solution to do this since this will change pretty often
 APHeader g_apHeader = {};
 
-bool ConnectAndGenerate() {
-    ClearDescription(); // clear top screen to make room for debug messages (temporary)
+void ConnectAndGenerate() {
     g_apHeader.listening = 1;
-
     printf("\x1b[20;0HWaiting for proxy to send data...\n");
-
-    return true;
 }
 
 void CancelArchipelago() {
@@ -28,9 +23,10 @@ void PollArchipelagoPayload() {
         return;
 
     uint32_t payloadSize = g_apHeader.payloadSize;
+    ClearDescription(); // hacky way to select the top screen
 
     if (payloadSize >= sizeof(g_apHeader.payload)) {
-        printf("Error: Invalid AP payload size: %lu\n", static_cast<unsigned long>(payloadSize));
+        printf("\x1b[20;0HError: Invalid AP payload size: %lu\n", static_cast<unsigned long>(payloadSize));
         return;
     }
 
@@ -39,9 +35,11 @@ void PollArchipelagoPayload() {
     memcpy(json, g_apHeader.payload, payloadSize);
     json[payloadSize] = '\0';
 
-    ClearDescription();
-    printf("%s\n\n", json);
-    printf("Received AP payload: %ld bytes\n", payloadSize);
+    // printf("%s\n\n", json);
+    printf("\x1b[20;0HReceived AP payload: %ld bytes\n", payloadSize);
 
     g_apHeader.lock = 0; // allow proxy to write data again
+}
+
+void ParseSlotData(const char* json) {
 }
