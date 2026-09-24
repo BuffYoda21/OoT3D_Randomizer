@@ -1,8 +1,9 @@
 #include "archipelago.hpp"
 #include <cstring>
 #include "menu.hpp"
+#include "preset.hpp"
 
-// last checked address: 0x50f000
+// last checked address: 0x510000
 // Still need a better solution to do this since this will change pretty often
 APHeader g_apHeader = {};
 
@@ -30,16 +31,17 @@ void PollArchipelagoPayload() {
         return;
     }
 
-    static char json[sizeof(g_apHeader.payload) + 1];
+    static char data[sizeof(g_apHeader.payload) + 1];
 
-    memcpy(json, g_apHeader.payload, payloadSize);
-    json[payloadSize] = '\0';
+    memcpy(data, g_apHeader.payload, payloadSize);
+    data[payloadSize] = '\0';
 
-    // printf("%s\n\n", json);
-    printf("\x1b[20;0HReceived AP payload: %ld bytes\n", payloadSize);
+    // printf("%s\n\n", data);
+    printf("Received AP payload: %ld bytes\n", payloadSize);
 
-    g_apHeader.lock = 0; // allow proxy to write data again
-}
+    // allow proxy to write data again
+    // data has been copied out of the buffer, so it's safe to delete it now
+    g_apHeader.lock = 0;
 
-void ParseSlotData(const char* json) {
+    LoadPresetRaw(data, OptionCategory::Setting);
 }

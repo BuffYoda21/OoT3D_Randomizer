@@ -139,7 +139,20 @@ bool SavePreset(std::string_view presetName, OptionCategory category) {
     return e == XML_SUCCESS;
 }
 
-// Read the preset XML file
+// Read from a raw string
+bool LoadPresetRaw(std::string xmlString, OptionCategory category) {
+    using namespace tinyxml2;
+
+    XMLDocument preset;
+    XMLError e = preset.Parse(xmlString.c_str());
+    if (e != XML_SUCCESS) {
+        return false;
+    }
+
+    return LoadPresetXml(preset, category);
+}
+
+// Read from a file
 bool LoadPreset(std::string_view presetName, OptionCategory category) {
     using namespace tinyxml2;
 
@@ -149,13 +162,25 @@ bool LoadPreset(std::string_view presetName, OptionCategory category) {
         return false;
     }
 
-    XMLElement* rootNode = preset.RootElement();
-    if (strcmp(rootNode->Name(), "settings") != 0) {
-        // We do not have our <settings> root node, so it may be the old structure. We don't support that one anymore.
+    return LoadPresetXml(preset, category);
+}
+
+// Read from a prepared XML object
+bool LoadPresetXml(const tinyxml2::XMLDocument& preset, OptionCategory category) {
+    using namespace tinyxml2;
+
+    bool archipelago           = false;
+    const XMLElement* rootNode = preset.RootElement();
+    if (strcmp(rootNode->Name(), "settings") == 0) {
+        archipelago = false;
+    } else if (strcmp(rootNode->Name(), "apsettings") == 0) {
+        archipelago = true;
+    } else {
+        // No <settings> or <apsettings> root node, so it may be the old structure. We don't support that one anymore.
         return false;
     }
 
-    XMLElement* curNode = rootNode->FirstChildElement();
+    const XMLElement* curNode = rootNode->FirstChildElement();
 
     for (Menu* menu : Settings::GetAllOptionMenus()) {
         if (menu->mode != OPTION_MENU) {
@@ -180,7 +205,13 @@ bool LoadPreset(std::string_view presetName, OptionCategory category) {
                 curNode = rootNode->FirstChildElement();
                 while (curNode != nullptr) {
                     if (settingToFind == SanitizedString(curNode->Attribute("name"))) {
-                        setting->SetSelectedIndexByString(curNode->GetText());
+                        if (archipelago) {
+                            setting->SetSelectedIndex(atoi(curNode->GetText()));
+                            // printf("%s set to %s\n", setting->GetName().c_str(),
+                            //       setting->GetSelectedOptionText().c_str());
+                        } else {
+                            setting->SetSelectedIndexByString(curNode->GetText());
+                        }
                         curNode = curNode->NextSiblingElement();
                         break;
                     }
