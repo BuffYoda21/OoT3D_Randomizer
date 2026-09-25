@@ -196,7 +196,11 @@ bool LoadPresetXml(const tinyxml2::XMLDocument& preset, OptionCategory category)
             // we loop through the settings to find most of the matching elements.
             const std::string& settingToFind = SanitizedString(setting->GetName());
             if (settingToFind == SanitizedString(curNode->Attribute("name"))) {
-                setting->SetSelectedIndexByString(curNode->GetText());
+                if (archipelago) {
+                    setting->SetSelectedIndex(atoi(curNode->GetText()));
+                } else {
+                    setting->SetSelectedIndexByString(curNode->GetText());
+                }
                 curNode = curNode->NextSiblingElement();
             } else {
                 // If the current setting and element don't match, then search
@@ -207,8 +211,6 @@ bool LoadPresetXml(const tinyxml2::XMLDocument& preset, OptionCategory category)
                     if (settingToFind == SanitizedString(curNode->Attribute("name"))) {
                         if (archipelago) {
                             setting->SetSelectedIndex(atoi(curNode->GetText()));
-                            // printf("%s set to %s\n", setting->GetName().c_str(),
-                            //       setting->GetSelectedOptionText().c_str());
                         } else {
                             setting->SetSelectedIndexByString(curNode->GetText());
                         }
