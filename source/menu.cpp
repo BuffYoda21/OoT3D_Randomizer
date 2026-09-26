@@ -178,8 +178,8 @@ void MoveCursor(u32 kDown, bool updatedByHeld) {
             max = presetEntries.size();
         } else if (currentMenu->mode == GENERATE_MODE) { // Generate menu: 2 options
             max = 2;
-        } else if (currentMenu->mode == ARCHIPELAGO_MULTIWORLD) { // Archipelago Multiworld menu: 2 options
-            max = 2;
+        } else if (currentMenu->mode == ARCHIPELAGO_MULTIWORLD) { // Archipelago Multiworld menu: 1 option
+            max = 1;
         } else if (currentMenu->itemsList != nullptr) {
             max = currentMenu->itemsList->size(); // Default max: Number of items in menu
         }
